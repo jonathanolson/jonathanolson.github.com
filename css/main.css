@@ -1,9 +1,9 @@
 .patchwork-container {
     position: relative;
     overflow: hidden;
-    background-color: black;
+    /*background-color: black;*/
     left: -20px;
-    border: 1px solid #000;
+    margin-bottom: 5px;
 }
 
 .patchwork-block {
