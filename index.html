@@ -8,6 +8,12 @@
 	<link href="css/bootstrap-responsive.min.css" rel="stylesheet" media="screen">
 	<link href="css/main.css" rel="stylesheet" media="screen">
 
+	<!-- initialize MathJax for TeX / LaTeX input -->
+	<script type="text/x-mathjax-config">
+	MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+	</script>
+	<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
 	<!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
 	<!--[if lt IE 9]><script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
 </head>
@@ -25,13 +31,17 @@
 
 	<h1>Under Construction</h1>
 
+	<p>
+		$$\forall \varphi \int_0^{2\pi}f(\theta)\cos(\varphi + \theta)\,\mathrm{d}\theta=0$$
+	</p>
+
 	<script src="http://code.jquery.com/jquery-latest.js"></script>
 	<script src="js/main.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 	<script>
-		(function(){
-			var lastWidth = $('.navbar').width();
-			var lastHeight = $('.navbar-inner').height();
+	(function(){
+		var lastWidth = $('.navbar').width();
+		var lastHeight = $('.navbar-inner').height();
 
 			// hack for detecting multiple rows and setting to the min-height of the navbar
 			if( lastHeight >= 80 ) {
@@ -66,6 +76,6 @@
 			// since this is executed after the bootstrap listeners are added, this should be mostly safe
 			$(window).resize( function(){ updateBanner(); } );
 		})();
-	</script>
-</body>
-</html>
+		</script>
+	</body>
+	</html>
