@@ -6,6 +6,7 @@
 	<title>Jonathan Olson</title>
 	<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
 	<link href="css/bootstrap-responsive.min.css" rel="stylesheet" media="screen">
+	<link href="css/main.css" rel="stylesheet" media="screen">
 
 	<!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
 	<!--[if lt IE 9]><script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
@@ -22,9 +23,49 @@
 		</div>
 	</div>
 
-	<h1>Hello, world!</h1>
+	<h1>Under Construction</h1>
 
 	<script src="http://code.jquery.com/jquery-latest.js"></script>
+	<script src="js/main.js"></script>
 	<script src="js/bootstrap.min.js"></script>
+	<script>
+		(function(){
+			var lastWidth = $('.navbar').width();
+			var lastHeight = $('.navbar-inner').height();
+
+			// hack for detecting multiple rows and setting to the min-height of the navbar
+			if( lastHeight >= 80 ) {
+				lastHeight = 40;
+			}
+
+			// track the patchwork banner and regenerate it if needed (width being too small)
+			var banner = null;
+			function updateBanner() {
+				var curWidth = $('.navbar').width();
+
+				// remove the banner if the width is too small, and make it regenerate
+				if( banner != null && lastWidth < curWidth ) {
+					banner.remove();
+					banner = null;
+					while( lastWidth < curWidth && lastWidth > 0 ) {
+						lastWidth *= 2;
+					}
+				}
+
+				// build the banner
+				if( banner == null ) {
+					banner = jonathanolson.createPatchwork( lastWidth, lastHeight );
+					$('.navbar-inner').append( banner );
+				}
+
+				return 0;
+			}
+
+			updateBanner();
+
+			// since this is executed after the bootstrap listeners are added, this should be mostly safe
+			$(window).resize( function(){ updateBanner(); } );
+		})();
+	</script>
 </body>
 </html>

@@ -1,0 +1,22 @@
+.patchwork-container {
+    position: relative;
+    overflow: hidden;
+    background-color: black;
+    left: -20px;
+    border: 1px solid #000;
+}
+
+.patchwork-block {
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    opacity: 0.5;
+    filter: alpha(opacity = 50);
+    border: 1px solid black;
+}
+
+.patchwork-block:hover {
+    opacity: 0.75;
+    filter: alpha(opacity = 75);
+    border: 1px solid white;
+}
