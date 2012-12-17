@@ -12,7 +12,8 @@
 	<script type="text/x-mathjax-config">
 	MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
 	</script>
-	<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+	<!--<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>-->
+	<script type="text/javascript" src="../../dev/mathjax-2.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
 	<!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
 	<!--[if lt IE 9]><script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
@@ -32,16 +33,92 @@
 	<div class="row-fluid">
 		<div class="span2"></div>
 		<div class="span8">
-			<h1>Convolution with unit disk into a constant function</h1>
-			<h2>Problem Statement</h2>
+			<h1>Blur into Nothing</h1>
+			<p class="lead">
+				Imagine someone tells you of a magical landscape where everywhere you go, the average elevation within
+				1km is always the same. Is there any way this landscape can have hills?
+			</p>
 			<p>
-				$$\forall \varphi \int_0^{2\pi}f(\theta)\cos(\varphi + \theta)\,\mathrm{d}\theta=0$$
+				Essentially, I want to know whether there is any 2-dimensional real-valued function $f \ne f(p)=0$ that, when <a href="http://en.wikipedia.org/wiki/Convolution">convolved</a> with the unit
+				<a href="http://en.wikipedia.org/wiki/Disk_(mathematics)">disk</a> ($|x|&lt;1$), is
+				constant (or without loss of generality, zero). Intuitively, this would mean that if you had a camera that blurred each point to a uniform disk, there would be a non-constant scene that would blur into a blank photo.
+			</p>
+			<p>
+				Formally, I'm curious whether there exists a function $f:\mathbb{R}^2\Rightarrow\mathbb{R}$ (not the constant function $f=0$) such that integration over any unit disk is 0:
+				$$\forall p\in\mathbb{R}^2\quad\iint\limits_{|x-p|&lt;1}f(x)\,\mathrm{d}A = \int\limits_0^{2\pi}\int\limits_0^1 f_p(r,\theta)\,r\,\mathrm{d}r\,\mathrm{d}\theta = 0$$
+
+				Where $f_p(r,\theta)=f(p_x+r\cos\theta,p_y+r\sin\theta)$.
+			</p>
+			<h2>Constraints from differential area</h2>
+			<p>
+				So far, the most promising approach I've found is based on the fact that for any unit disks $A$ and $B$,
+				their respective differences are equal. With the notation that for any area $C$, the integral of $f$ over
+				$C$ is $A_f(C)=\iint_C f(x)\,\mathrm{d}A$, we get $A_f(A)=A_f(A\cap B)+A_f(A-B)=0$ and
+				$A_f(B)=A_f(B\cap A)+A_f(B-A)=0$ we arrive at
+				$$A_f(A-B)=A_f(B-A)$$
+				Intuitively, we can make $A$ and $B$ arbitrarily close so that we can identify constraints on the
+				perimeter of any unit disk.
+			</p>
+			<div style="text-align: center;">
+				<embed src="img/unit-disk-hypotenuse.svg" type="image/svg+xml" class="figure-center"/>
+			</div>
+			<p>
+				Given a unit disk $A$ with center $(0,0)$ and a unit disk $B$ with center $(d,0)$, we look at how their differences $B-A$, $A-B$ and their integrals behave as we change $d\to 0$. Parameterizing based on the angle $\theta$ from the center of $A$, we want to be able to measure $h(\theta)$ and obtain:
+
+				$$A_f(B-A)=\int_{-\theta_0}^{\theta_0}\int_{1}^{h(\theta)}f(r,\theta)r\,\mathrm{d}r\,\mathrm{d}\theta$$
+				$$A_f(A-B)=\int_{-\theta_0+\pi}^{\theta_0+\pi}\int_{1}^{h(\theta)}f(r,\theta),\mathrm{d}r\,\mathrm{d}\theta$$
+				Where $\theta_0=\cos^{-1}\left(\frac{d}{2}\right)$ is the angle from the center of $A$ to where the
+				boundaries of $A$ and $B$ intersect. It is important to note that $h(\theta)$ is the same for both the
+				$A-B$ and $B-A$ cases. For $h(\theta)$, we use the law of cosines to obtain:
+
+				$$1=h^2+d^2-2hd\cos\theta$$
+
+				This can be grouped into the polynomial $h^2-2hd\cos\theta+d^2-1=0$ and solved with the quadratic equation:
+
+				$$h=\frac{2d\cos\theta\pm\sqrt{4d^2\cos^2\theta-4(d^2-1)}}{2}$$
+
+				and simplifying:
+				\begin{align*}
+				h&amp;=d\cos\theta\pm\sqrt{d^2\cos^2\theta-d^2+1}\\
+				h&amp;=d\cos\theta\pm\sqrt{d^2(\cos^2\theta-1)+1}\\
+				h&amp;=d\cos\theta\pm\sqrt{1-d^2\sin^2\theta}
+				\end{align*}
+				Since we are interested in the far case, we are left with
+
+				$$h(\theta)=d\cos\theta + \sqrt{1-d^2\sin^2\theta}$$
+
+				<a href="http://www.wolframalpha.com">Wolfram Alpha</a> shows that
+				$\frac{\partial}{\partial d}h(\theta)=\cos\theta-d(\cdots)$	and thus at $d=0\ (A=B)$ we have
+
+				$$h(\theta)=1, \qquad \frac{\partial}{\partial d}h(\theta)=\cos\theta$$
+
+				From the area integrals above, $A_f(B-A)-A_f(A-B)=0$ and we arrive at
+
+				$$\int_{-\theta_0}^{\theta_0}\int_{1}^{h(\theta)}f(r,\theta)r\,\mathrm{d}r\,\mathrm{d}\theta - \int_{-\theta_0+\pi}^{\theta_0+\pi}\int_{1}^{h(\theta)}f(r,\theta),\mathrm{d}r\,\mathrm{d}\theta = 0$$
+
+				Since $\lim_{d\to 0}\theta_0=\pi/2$, and assuming $f$ is piecewise continuous, we get (VERIFY THIS):
+
+				$$\frac{\partial}{\partial d}\left(A_f(B-A)-A_f(A-B)\right)=\int\limits_{-\pi/2}^{\pi/2}f(1,\theta)\cos\theta\,\mathrm{d}\theta - \int\limits_{\pi/2}^{3\pi/2}f(1,\theta)\cos\theta\,\mathrm{d}\theta=0$$
+
+				Since $\cos$ is an even function, we get
+
+				$$\int_{0}^{2\pi}f(1,\theta)\cos\theta\,\mathrm{d}\theta = 0$$
+
+				This can be extended for any angle $\varphi$ and any disk center (not just at the origin), leading to
+
+				$$\forall \varphi\in\mathbb{R},\quad \forall p\in\mathbb{R}^2,\quad \int_0^{2\pi}f_p(\theta)\cos(\varphi + \theta)\,\mathrm{d}\theta=0$$
+
+				Where $f_p(\theta)$ denotes $f(p_x+\cos\theta,p_y+\sin\theta)$, the unit circle with center $p$
+				parameterized by $\theta$, for all piecewise continuous functions $f$.
 			</p>
 		</div>
-		<div class="span2"></div>
+		<div class="span2">
+			<h2>TO-DO</h2>
+		</div>
 	</div>
 
-	<script src="http://code.jquery.com/jquery-latest.js"></script>
+	<!--<script src="http://code.jquery.com/jquery-latest.js"></script>-->
+	<script src="../../dev/jquery-1.8.3.js"></script>
 	<script src="js/main.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 	<script>
