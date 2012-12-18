@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Jonathan Olson
+categories: home
 ---
 
 <div class="row-fluid">
@@ -8,13 +8,16 @@ title: Jonathan Olson
 	<div class="span8">
 		<h1>Problems</h1>
 
-		<h2><a href="/problems/flattening-convolution">Flattening Convolution</a></h2>
+		{% for problem in site.categories.problem %}
+		<h2><a href="{{ problem.url | replace:'.html','' }}">{{ problem.title }}</a></h2>
 
-		<p class="lead">
-			Imagine someone tells you of a magical landscape where everywhere you go, the average elevation within
-			1km is always the same. Is there any way this landscape can have hills?
+		<p class="lead">{{problem.lead}}</p>
+
+		<p style="text-align: right;">
+			<a href="{{ problem.url | replace:'.html','' }}">read more...</a>
 		</p>
-		
+		{% endfor %}
+
 	</div>
 	<div class="span2"></div>
 </div>

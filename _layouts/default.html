@@ -3,17 +3,19 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>{{ page.title }}</title>
-	<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
-	<link href="css/bootstrap-responsive.min.css" rel="stylesheet" media="screen">
-	<link href="css/main.css" rel="stylesheet" media="screen">
+	<title>{% if page.title%}{{ page.title }} - {% endif %}Jonathan Olson</title>
+	<link href="/css/bootstrap.min.css" rel="stylesheet" media="screen">
+	<link href="/css/bootstrap-responsive.min.css" rel="stylesheet" media="screen">
+	<link href="/css/main.css" rel="stylesheet" media="screen">
 
+	{% if page.mathjax %}
 	<!-- initialize MathJax for TeX / LaTeX input -->
 	<script type="text/x-mathjax-config">
 	MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
 	</script>
 	<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 	<!--<script type="text/javascript" src="../../dev/mathjax-2.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>-->
+	{% endif %}
 
 	<!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
 	<!--[if lt IE 9]><script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
@@ -37,9 +39,10 @@
 		<div class="navbar-inner">
 			<a class="brand" href="/">Jonathan Olson</a>
 			<ul class="nav">
-				<li class="active"><a href="/">Home</a></li>
-				<li><a href="/about">About</a></li>
-				<li><a href="/contact">Contact</a></li>
+				<li {% if page.categories contains 'home' %}class="active"{% endif %}><a href="/">Home</a></li>
+				<li {% if page.categories contains 'problem' %}class="active"{% endif %}><a href="/">Problems</a></li>
+				<li {% if page.categories contains 'about' %}class="active"{% endif %}><a href="/">About</a></li>
+				<li {% if page.categories contains 'contact' %}class="active"{% endif %}><a href="/">Contact</a></li>
 			</ul>
 		</div>
 	</div>
@@ -48,8 +51,8 @@
 
 	<script src="http://code.jquery.com/jquery-latest.js"></script>
 	<!--<script src="../../dev/jquery-1.8.3.js"></script>-->
-	<script src="js/main.js"></script>
-	<script src="js/bootstrap.min.js"></script>
+	<script src="/js/main.js"></script>
+	<script src="/js/bootstrap.min.js"></script>
 	<script>
 	(function(){
 		var lastWidth = $('.navbar').width();
