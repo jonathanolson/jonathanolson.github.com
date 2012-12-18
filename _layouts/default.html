@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>{{ page.title }}</title>
+	<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+	<link href="css/bootstrap-responsive.min.css" rel="stylesheet" media="screen">
+	<link href="css/main.css" rel="stylesheet" media="screen">
+
+	<!-- initialize MathJax for TeX / LaTeX input -->
+	<script type="text/x-mathjax-config">
+	MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+	</script>
+	<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+	<!--<script type="text/javascript" src="../../dev/mathjax-2.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>-->
+
+	<!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+	<!--[if lt IE 9]><script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+	<script type="text/javascript">
+	var _gaq = _gaq || [];
+	_gaq.push( ["_setAccount","UA-10159461-1"] );
+	_gaq.push( ["_setDomainName","jonathan-olson.com"] );
+	_gaq.push( ["_trackPageview"] );
+	_gaq.push( ['_trackPageLoadTime'] );
+
+	(function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	})();
+	</script>
+</head>
+<body>
+	<div class="navbar navbar-inverse navbar-static-top">
+		<div class="navbar-inner">
+			<a class="brand" href="/">Jonathan Olson</a>
+			<ul class="nav">
+				<li class="active"><a href="/">Home</a></li>
+				<li><a href="/about">About</a></li>
+				<li><a href="/contact">Contact</a></li>
+			</ul>
+		</div>
+	</div>
+
+	{{ content }}
+
+	<script src="http://code.jquery.com/jquery-latest.js"></script>
+	<!--<script src="../../dev/jquery-1.8.3.js"></script>-->
+	<script src="js/main.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script>
+	(function(){
+		var lastWidth = $('.navbar').width();
+		var lastHeight = $('.navbar-inner').height();
+
+			// hack for detecting multiple rows and setting to the min-height of the navbar
+			if( lastHeight >= 80 ) {
+				lastHeight = 40;
+			}
+
+			// track the patchwork banner and regenerate it if needed (width being too small)
+			var banner = null;
+			function updateBanner() {
+				var curWidth = $('.navbar').width();
+
+				// remove the banner if the width is too small, and make it regenerate
+				if( banner != null && lastWidth < curWidth ) {
+					banner.remove();
+					banner = null;
+					while( lastWidth < curWidth && lastWidth > 0 ) {
+						lastWidth *= 2;
+					}
+				}
+
+				// build the banner
+				if( banner == null ) {
+					banner = jonathanolson.createPatchwork( lastWidth, lastHeight );
+					$('.navbar-inner').append( banner );
+				}
+
+				return 0;
+			}
+
+			updateBanner();
+
+			// since this is executed after the bootstrap listeners are added, this should be mostly safe
+			$(window).resize( function(){ updateBanner(); } );
+		})();
+	</script>
+</body>
+</html>
