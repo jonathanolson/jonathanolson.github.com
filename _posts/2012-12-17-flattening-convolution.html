@@ -21,11 +21,41 @@ lead: Imagine someone tells you of a magical landscape where everywhere you go, 
 	Formally, I'm curious whether there exists a function $f:\mathbb{R}^2\Rightarrow\mathbb{R}$ (not the constant function $f=0$) such that integration over any unit disk is 0:
 	$$\forall p\in\mathbb{R}^2\quad\iint\limits_{|x-p|&lt;1}f(x)\,\mathrm{d}A = \int\limits_0^{2\pi}\int\limits_0^1 f_p(r,\theta)\,r\,\mathrm{d}r\,\mathrm{d}\theta = 0$$
 
-	Where $f_p(r,\theta)=f(p_x+r\cos\theta,p_y+r\sin\theta)$.
+	Where $f_p(r,\theta)=f(p_x+r\cos\theta,p_y+r\sin\theta)$. Or perhaps more simply
+
+	$$f * I_\mathrm{disk}=0,\quad$$
+
+	Where $I_\mathrm{disk}$ is $1$ inside of the unit disk centered at the origin, and $0$ everywhere else, and $*$
+	is the convolution operator.
+</p>
+<h2>Using the Convolution Theorem</h2>
+<p class="text-warning">
+	Work in progress - will convert away from the $e^{-\imath2\pi\omega t}$ style Fourier transform
+</p>
+<p>
+	According to this <a href="http://isi.ssl.berkeley.edu/~tatebe/whitepapers/FT%20of%20Uniform%20Disk.pdf">
+	white paper</a>, the <a href="http://en.wikipedia.org/wiki/Fourier_transform">Fourier transform</a>
+	($\mathcal{F}$) of a
+	unit disk is radially symmetric and equal to
+	$$\mathcal{F}\{ I_\mathrm{disk} \}=F(\omega)=\frac{\sqrt{3}}{4|\omega|}J_1(2\pi |\omega|)$$
+	where $J_1$ is a <a href="http://en.wikipedia.org/wiki/Bessel_function">Bessel function</a> of the first kind.
+	Following from the <a href="http://en.wikipedia.org/wiki/Convolution_theorem">Convolution theorem</a> we
+	obtain the point-wise multiplication of $f$ and the disk in the Fourier domain:
+	$$f * I_\mathrm{disk}=\mathcal{F}^{-1}\left\{ \mathcal{F}\{ f \} \cdot \mathcal{F}\{ I_\mathrm{disk} \} \right\}$$
+	Since the only way for $f * I_\mathrm{disk}$ to be the constant $0$ function is for its Fourier transform
+	to be the same, $\mathcal{F}\{f\}$ can only have non-zero values where $\mathcal{F}\{ I_\mathrm{disk} \}=0$.
+	From above, this means that $\mathcal{F}\{f\}$ takes on non-zero values specifically where
+	$$|\omega|=\frac{J_{1,n}}{2\pi}$$
+	where $J_{1,n}$ are the zeros of $J_1$. Since we are assuming $f$ is real, we constrain
+	$\mathcal{F}\{f\}(\omega)=\mathcal{F}\{f\}(-\omega)$ and thus we can describe $f$ as a weighted sum of
+	functions of the form
+	$$f_{n,\hat{u},\phi}(\vec{v})=\cos(J_{1,n}(\vec{v} \cdot \hat{u})+\phi)$$
+	where $n$ selects which zero of the Bessel function is referenced, $\hat{u}$ is a unit vector indicating
+	the direction of the oscillation, and $\phi$ is an arbitrary phase offset.
 </p>
 <h2>Constraints from differential area</h2>
 <p>
-	So far, the most promising approach I've found is based on the fact that for any unit disks $A$ and $B$,
+	Another interesting approach I've found is based on the fact that for any unit disks $A$ and $B$,
 	their respective differences are equal. With the notation that for any area $C$, the integral of $f$ over
 	$C$ is $A_f(C)=\iint_C f(x)\,\mathrm{d}A$, we get $A_f(A)=A_f(A\cap B)+A_f(A-B)=0$ and
 	$A_f(B)=A_f(B\cap A)+A_f(B-A)=0$ we arrive at
@@ -72,7 +102,7 @@ lead: Imagine someone tells you of a magical landscape where everywhere you go, 
 
 	Since $\lim_{d\to 0}\theta_0=\pi/2$, and assuming $f$ is piecewise continuous, we get (VERIFY THIS):
 
-	$$\frac{\partial}{\partial d}\left(A_f(B-A)-A_f(A-B)\right)=\int\limits_{-\pi/2}^{\pi/2}f(1,\theta)\cos\theta\,\mathrm{d}\theta - \int\limits_{\pi/2}^{3\pi/2}f(1,\theta)\cos\theta\,\mathrm{d}\theta=0$$
+	$$\frac{\partial}{\partial d}\left(A_f(B-A)-A_f(A-B)\right)=\\ \int\limits_{-\pi/2}^{\pi/2}f(1,\theta)\cos\theta\,\mathrm{d}\theta - \int\limits_{\pi/2}^{3\pi/2}f(1,\theta)\cos\theta\,\mathrm{d}\theta=0$$
 
 	Since $\cos$ is an even function, we get
 
