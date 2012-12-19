@@ -15,3 +15,19 @@ lead: How can we choose a subset of $\{1,\ldots,n\}$ with as many elements as po
 	A naive approach would start with choosing all $2^k \le n$ since in binary their addition is unique, however
 	numbers like $7$ and $11$ can also be added as elements.
 </p>
+<h2>Coming soon</h2>
+<p>Or maybe these are exercises left to the reader?</p>
+<ul>
+	<li>
+		Better "naive" approach: start adding elements to subset incrementally beginning with $1$, on the condition
+		that the sum of that element and any existing element is not yet in the subset. This would result in
+		$\{1,2,4,7,10,13,16,\ldots\}$.
+	</li>
+	<li>
+		"Last half" approach: pick subset of all numbers $k\ge \lfloor n/2+1 \rfloor$. Thus for the $n=16$ example
+		in the improved "naive" approach, we would get $\{9,10,11,12,13,14,15,16\}$.
+	</li>
+	<li>
+		If the "last half" approach is the best, investigate the same problem, but $\pmod{n+1}$.
+	</li>
+</ul>

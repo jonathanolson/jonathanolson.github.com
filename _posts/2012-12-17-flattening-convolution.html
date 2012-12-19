@@ -111,9 +111,30 @@ lead: Imagine someone tells you of a magical landscape where everywhere you go, 
 	$$\int_{0}^{2\pi}f(1,\theta)\cos\theta\,\mathrm{d}\theta = 0$$
 
 	This can be extended for any angle $\varphi$ and any disk center (not just at the origin), leading to
-
+</p>
+<p class="well">
 	$$\forall \varphi\in\mathbb{R},\quad \forall p\in\mathbb{R}^2,\quad \int_0^{2\pi}f_p(\theta)\cos(\varphi + \theta)\,\mathrm{d}\theta=0$$
 
 	Where $f_p(\theta)$ denotes $f(p_x+\cos\theta,p_y+\sin\theta)$, the unit circle with center $p$
 	parameterized by $\theta$, for all piecewise continuous functions $f$.
 </p>
+<h2>Coming soon</h2>
+<p>Or maybe these are exercises left to the reader?</p>
+<ul>
+	<li>
+		Show that $\forall\varphi,\ \forall n\ge 2\in\mathbb{N},\quad \sum_{k=0}^{n}\cos(\frac{2\pi}{n}k+\varphi)=0$,
+		and thus sums of functions of the form $f_p(\theta)=g(n\theta\mod{2\pi})$ i.e. $g$ repeated $n$ times
+		around the circle where $g$ is piecewise continuous, satisfy the differential perimeter formula. Consider
+		whether this is a necessary condition, now that we have methods for constructing $f$. If $n$ is prime,
+		are these functions orthogonal? Could we decompose a function into these uniquely?
+	</li>
+	<li>HTML5 canvas with density map of example $f$ functions</li>
+	<li>Add LaTeX formula references for clarity</li>
+	<li>
+		Note 1D case is just any function periodic over a unit interval, $n$-dimensional unit hypercube case requires a function periodic in the same way.
+	</li>
+	<li>
+		Investigate sampling from distriutions of disk positions. Essentially, the integral should also hold
+		not just for a uniform unit disk but for an (in)finite sum of unit disks.
+	</li>
+</ul>

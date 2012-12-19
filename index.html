@@ -10,15 +10,23 @@ mathjax: true
 		<h1>Problems</h1>
 
 		{% for problem in site.categories.problem %}
-		<h2><a href="{{ problem.url | replace:'.html','' }}">{{ problem.title }}</a></h2>
+		<h2><a href="{{ problem.url | replace:'.html','' }}" style="font-size: 70%;">{{ problem.title }}</a></h2>
 
-		<p class="lead">{{problem.lead}}</p>
+		<p>{{problem.lead}}</p>
 
 		<p style="text-align: right;">
 			<a href="{{ problem.url | replace:'.html','' }}">read more...</a>
 		</p>
 		{% endfor %}
 
+		<h1>Coming Soon</h1>
+		<ul>
+			<li>Topswops</li>
+			<li>Parking choices to avoid being hit while away</li>
+			<li>Dart cloud distributions</li>
+			<li>Relation and proposition discovery</li>
+			<li>Actual about/contact pages</li>
+		</ul>
 	</div>
 	<div class="span2"></div>
 </div>
