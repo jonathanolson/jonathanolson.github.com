@@ -13,7 +13,7 @@ lead: Imagine someone tells you of a magical landscape where everywhere you go, 
 	1km is always the same. Is there any way this landscape can have hills?
 </p>
 <p>
-	Essentially, I want to know whether there is any 2-dimensional real-valued function $f \ne f(p)=0$ that, when <a href="http://en.wikipedia.org/wiki/Convolution">convolved</a> with the unit
+	Essentially, I want to know whether there is a 2-dimensional real-valued function $f \ne f(p)=0$ that, when <a href="http://en.wikipedia.org/wiki/Convolution">convolved</a> with the unit
 	<a href="http://en.wikipedia.org/wiki/Disk_(mathematics)">disk</a> ($|x|&lt;1$), is
 	constant (or without loss of generality, zero). Intuitively, this would mean that if you had a camera that blurred each point to a uniform disk, there would be a non-blank scene that would blur into a blank photo.
 </p>
@@ -45,12 +45,14 @@ lead: Imagine someone tells you of a magical landscape where everywhere you go, 
 	Since the only way for $f * I_\mathrm{disk}$ to be the constant $0$ function is for its Fourier transform
 	to be the same, $\mathcal{F}\{f\}$ can only have non-zero values where $\mathcal{F}\{ I_\mathrm{disk} \}=0$.
 	From above, this means that $\mathcal{F}\{f\}$ takes on non-zero values specifically where
-	$$|\omega|=\frac{J_{1,n}}{2\pi}$$
-	where $J_{1,n}$ are the zeros of $J_1$. Since we are assuming $f$ is real, we constrain
-	$\mathcal{F}\{f\}(\omega)=\mathcal{F}\{f\}(-\omega)$ and thus we can describe $f$ as a weighted sum of
-	functions of the form
-	$$f_{n,\hat{u},\phi}(\vec{v})=\cos(J_{1,n}(\vec{v} \cdot \hat{u})+\phi)$$
-	where $n$ selects which zero of the Bessel function is referenced, $\hat{u}$ is a unit vector indicating
+	$$|\omega|=\frac{j_{1,n}}{2\pi}$$
+	where $j_{1,n}$ are the zeros of $J_1$. Since we are assuming $f$ is real, we constrain
+	$\mathcal{F}\{f\}(\omega)=\mathcal{F}\{f\}(-\omega)$ and thus:
+</p>
+<p class="well">
+	$f$ satisfies the condition $f * I_\mathrm{disk}=0$ iff $f$ is a weighted sum of functions of the form
+	$$f_{n,\hat{u},\phi}(\vec{v})=\cos(j_{1,n}(\vec{v} \cdot \hat{u})+\phi)$$
+	where $n$ selects the Bessel function zero, $\hat{u}$ is a unit vector indicating
 	the direction of the oscillation, and $\phi$ is an arbitrary phase offset.
 </p>
 <h2>Constraints from differential area</h2>
