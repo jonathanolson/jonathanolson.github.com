@@ -12,93 +12,6 @@ lead: Imagine someone tells you of a magical landscape where everywhere you go, 
 	Imagine someone tells you of a magical landscape where everywhere you go, the average elevation within
 	1km is always the same. Is there any way this landscape can have hills?
 </p>
-<div id="convolution-canvas-container" style="margin-left: 10px; margin-bottom: 10px; text-align: center; float: right;">
-	<canvas id="convolution-canvas" width="256" height="256"></canvas>
-</div>
-<script>
-$(document).ready(function () {
-	var ctx = null;
-	var canvas = $('#convolution-canvas');
-	try {
-		ctx = canvas[0].getContext( '2d' );
-	} catch(e) {}
-	if( ctx ) {
-		var width = 256;
-		var height = 256;
-
-		var besselRoots = [
-			3.8317059702075123156, 7.0155866698156187526, 10.173468135062722077, 
-			13.323691936314223032, 16.470630050877632813, 19.615858510468242021, 
-			22.760084380592771898, 25.903672087618382625, 29.046828534916855067, 
-			32.189679910974403627
-		];
-
-		var boundsScale = 2;
-
-		// rgba buffer
-		var buffer = ctx.createImageData( width, height );
-
-		// TODO: aspect ratio internally not assured to be 1:1 depending on width/height
-
-		// pixel => x,y coordinates
-		function mapCol( col ) { return 2 * ( col / ( width - 1 ) - 0.5 ) * boundsScale; }
-		function mapRow( row ) { return 2 * ( row / ( height - 1 ) - 0.5 ) * boundsScale; }
-
-		// x,y => pixel coordinates
-		function mapX( x ) { return ( ( x / ( 2 * boundsScale ) ) + 0.5 ) * ( width + 1 ); }
-		function mapY( y ) { return ( ( y / ( 2 * boundsScale ) ) + 0.5 ) * ( height + 1 ); }
-
-		var scaleX = mapX( 1 ) - mapX( 0 );
-
-		for( var col = 0; col < width; col++ ) {
-			for( var row = 0; row < height; row++ ) {
-				var index = ( width * row + col ) * 4;
-
-				
-				var x = mapCol( col );
-				var y = mapRow( row );
-
-				var value = 0;
-				value += Math.cos( besselRoots[0] * x + 2.91541 );
-				value += 0.2 * Math.cos( besselRoots[0] * ( 0.713812 * x + 0.700337 * y ) + 0.79 );
-				value += 0.5 * Math.cos( besselRoots[1] * Math.sqrt( 2 ) * ( x + y ) + 5.44686 );
-				value += 0.2 * Math.cos( besselRoots[2] * ( 0.780651 * x - 0.624967 * y ) + 0.363359 );
-				value += 0.5 * Math.cos( besselRoots[1] * ( -0.809194 * x - 0.587542 * y ) + 5.54123 );
-				value += 0.5 * Math.cos( besselRoots[0] * ( -0.931525 * x - 0.363678 * y ) + 2.84367 );
-				value += 0.5 * Math.cos( besselRoots[3] * ( 0.625955 * x + 0.779859 * y ) + 4.09515 );
-				value += 0.3 * Math.cos( besselRoots[5] * ( -0.377179 * x - 0.92614 * y ) + 2.56 );
-
-				var pixelScale = 3.5;
-
-				var pixelValue = Math.floor( 256 * (value + pixelScale) / ( 2 * pixelScale ) );
-				if( pixelValue < 0 ) { pixelValue = 0; }
-				if( pixelValue > 255 ) { pixelValue = 255; }
-
-				buffer.data[index+0] = pixelValue;
-				buffer.data[index+1] = pixelValue;
-				buffer.data[index+2] = pixelValue;
-				buffer.data[index+3] = 255;
-			}
-		}
-
-		ctx.putImageData( buffer, 0, 0 );
-
-		console.log( mapX( 0 ) + "," + mapY( 0 ) + " radius " + scaleX );
-		ctx.beginPath();
-		ctx.arc( mapX( 0 ), mapY( 0 ), scaleX, 0, 2 * Math.PI );
-		ctx.lineWidth = 1;
-		ctx.strokeStyle = '#FF0000';
-		ctx.stroke();
-	} else {
-		// canvas not supported, so we hide it
-		canvas.hide();
-		$('#convolution-canvas-container').hide();
-	}
-});
-try {
-
-}catch(e){}
-</script>
 <p>
 	Essentially, I want to know whether there is a 2-dimensional real-valued function $f \ne f(p)=0$ that, when <a href="http://en.wikipedia.org/wiki/Convolution">convolved</a> with the unit
 	<a href="http://en.wikipedia.org/wiki/Disk_(mathematics)">disk</a> ($|x|&lt;1$), is
@@ -142,6 +55,23 @@ try {
 	where $n$ selects the Bessel function zero, $\hat{u}$ is a unit vector indicating
 	the direction of the oscillation, and $\phi$ is an arbitrary phase offset.
 </p>
+<figure>
+	<div id="convolution-canvas-container" style="margin: 0 auto; text-align: center; position: relative; width: 530px;">
+		<canvas id="convolution-canvas" width="256" height="256"></canvas>
+		<canvas id="display-canvas" width="256" height="256"></canvas>
+		<div style="position: absolute; top: 0; right: 15px;">$f_p(\theta)$</div>
+		<div style="position: absolute; top: 128px; right: 15px;">$f_p(\theta)\cos(\varphi + \theta)$</div>
+		<div style="position: absolute; top: 128px; right: 246px;">$\varphi$</div>
+	</div>
+	<figcaption>
+		A density plot for an example function $f$ is shown on the left, with a unit disk (outline in red).
+		<strong>Drag on	the density plot to move the unit circle</strong>. To the right, a plot of $f_p(\theta)$
+		around the current center of the unit circle, and a weighted version with $\varphi$ based on the
+		differential area formula below.
+	</figcaption>
+</figure>
+<script src="../js/flattening-convolution.js"></script>
+
 <h2>Constraints from differential area</h2>
 <p>
 	Another interesting approach I've found is based on the fact that for any unit disks $A$ and $B$,
