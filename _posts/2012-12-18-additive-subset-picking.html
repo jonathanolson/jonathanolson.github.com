@@ -4,30 +4,32 @@ title: Additive Subset Picking
 permalink: /problems/additive-subset-picking.html
 mathjax: true
 categories: problem
-lead: How can we choose a subset of $\{1,\ldots,n\}$ with as many elements as possible such that the sum of any two distinct elements is distinct itself?
+lead: How can we choose a subset of $\{1,\ldots,n\}$ with as many elements as possible such that the sum of any two elements is distinct?
 ---
 
 <h1>Additive Subset Picking</h1>
 <p class="lead">
-	How can we choose a subset of $\{1,\ldots,n\}$ with as many elements as possible such that the sum of any two distinct elements is distinct itself?
+	How can we choose a subset of $\{1,\ldots,n\}$ with as many elements as possible such that the sum of any two elements is distinct?
 </p>
 <p>
-	A naive approach would start with choosing all $2^k \le n$ since in binary their addition is unique, however
-	numbers like $7$ and $11$ can also be added as elements.
+	Formally, we want a subset $S\subset\mathbb{N}$ such that for all distinct unordered pairs
+	$\{a,b\} \ne \{c,d\},\, a+b\ne c+d$.
+	If we have two pairs of numbers such that $a-b=x$ and $c-d=x$ where $x\ne 0$, then we would have $a+d=b+c$, and thus
+	the difference between any two numbers in our subset is unique.
+</p>
+<p>
+	Of note, our valid subsets will be the elements $x \le n$ of
+	<a href="http://mathworld.wolfram.com/B2-Sequence.html">$B_2$ sequences</a>.
+</p>
+<p>
+	The naive approach starts with $\{1\}$ and then counts up and adding a number only if it doesn't introduce
+	a duplicate pairwise sum. This results in $\{1, 2, 4, 8, 13, 21, 31, 45, 66, 81, 97, \ldots\}$, known as the
+	<a href="http://mathworld.wolfram.com/Mian-ChowlaSequence.html">Mian-Chowla sequence</a>
+	(<a href="http://oeis.org/A005282">OEIS A005282</a>).
 </p>
 <h2>Coming soon</h2>
 <p>Or maybe these are exercises left to the reader?</p>
 <ul>
-	<li>
-		Better "naive" approach: start adding elements to subset incrementally beginning with $1$, on the condition
-		that the sum of that element and any existing element is not yet in the subset. This would result in
-		$\{1,2,4,7,10,13,16,\ldots\}$.
-	</li>
-	<li>
-		"Last half" approach: pick subset of all numbers $k\ge \lfloor n/2+1 \rfloor$. Thus for the $n=16$ example
-		in the improved "naive" approach, we would get $\{8,9,10,11,12,13,14,15,16\}$.
-	</li>
-	<li>
-		If the "last half" approach is the best, investigate the same problem, but $\pmod{n+1}$.
-	</li>
+	<li>Investigate referenced articles for $B_2$ sequences.</li>
+	<li>Extend to sums of $m$ elements, i.e. using $B_m$ sequences.</li>
 </ul>
