@@ -8,16 +8,22 @@ mathjax: true
 	<div class="span2"></div>
 	<div class="span8">
 		<h1>Problems</h1>
+		<p class="lead">
+			Things I'm working on. <strong>Feedback encouraged!</strong>
+		</p>
 
 		{% for problem in site.categories.problem %}
-		<h2><a href="{{ problem.url | replace:'.html','' }}" style="font-size: 70%;">{{ problem.title }}</a></h2>
+		<div style="float: left; max-width: 300px; margin: 10px;">
+			<h2><a href="{{ problem.url | replace:'.html','' }}" style="font-size: 70%;">{{ problem.title }}</a></h2>
 
-		<p>{{problem.lead}}</p>
+			<p>{{problem.lead}}</p>
 
-		<p style="text-align: right;">
-			<a href="{{ problem.url | replace:'.html','' }}">read more...</a>
-		</p>
+			<p style="text-align: right; margin-right: 20px;">
+				<a href="{{ problem.url | replace:'.html','' }}">read more...</a>
+			</p>
+		</div>
 		{% endfor %}
+		<div style="clear: both;"></div>
 
 		<h1>Coming Soon</h1>
 		<ul>
@@ -27,6 +33,7 @@ mathjax: true
 			<li>Relation and proposition discovery</li>
 			<li>Absolute dithering</li>
 			<li>Actual about/contact pages</li>
+			<li>Maybe some hexagons?</li>
 		</ul>
 	</div>
 	<div class="span2"></div>
