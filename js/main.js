@@ -41,6 +41,7 @@ var jonathanolson = {};
 			block.width( size );
 			block.height( size );
 			block.css( 'background-color', "rgb(" + red + "," + green + "," + blue + ")");
+			// block.css( 'background-color', "rgb(" + green + "," + blue + "," + red + ")");
 
 			element.append( block );
 		}
