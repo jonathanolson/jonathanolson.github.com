@@ -3,6 +3,7 @@ layout: simple
 title: Additive Subset Picking
 permalink: /problems/additive-subset-picking.html
 mathjax: true
+syntax: true
 categories: problem
 lead: How can we choose a subset of $\{1,\ldots,n\}$ with as many elements as possible such that the sum of any two elements is distinct?
 ---
@@ -33,6 +34,40 @@ lead: How can we choose a subset of $\{1,\ldots,n\}$ with as many elements as po
 	<li>Investigate referenced articles for $B_2$ sequences.</li>
 	<li>Extend to sums of $m$ elements, i.e. using $B_m$ sequences.</li>
 </ul>
+
+<h2>Appendix</h2>
+<h3>Code for the Mian-Chowla Sequence</h3>
+{% highlight python %}
+def buildSequence( n ):
+	"""Return the Mian-Chowla sequence for n elements.
+	Could be more efficient, this is just a very simple sieve.
+	"""
+	result = [1]
+	excluded = set([1])
+	differences = set([])
+
+	while len( result ) &lt; n:
+		# find the next non-excluded element in the sequence
+		x = result[-1]
+		while x in excluded:
+			x += 1
+
+		# add any new differences between x and previous elements
+		for a in result:
+			differences.add( abs( a - x ) )
+
+		# add our new element to our reslt sequence
+		result.append( x )
+		
+		# exclude any numbers that would cause a duplicate difference
+		# inefficient here, since we would only need to handle the
+		# newest lengths
+		for a in result:
+			for difference in differences:
+				excluded.add( a + difference )
+				excluded.add( a - difference )
+	return result
+{% endhighlight %}
 
 <h2>Feedback</h2>
 <p>
