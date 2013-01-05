@@ -9,6 +9,8 @@ hidecomments: true
 Bookmarks
 =========
 
+Experimenting with bookmarks on my website.
+
 General
 -------
 
@@ -19,3 +21,11 @@ Mathematics
 -----------
 
 * [The Endeavour - John D. Cook](http://www.johndcook.com/blog/)
+* [Symbolab - Formula Search Engine](http://www.symbolab.com/)
+
+Technical
+---------
+
+* [Sublime Text 2 Extensions](http://net.tutsplus.com/tutorials/tools-and-tips/essential-sublime-text-2-plugins-and-extensions/)
+* [Rackspace Email](http://www.rackspace.com/apps/email_hosting/rackspace_email/)
+
