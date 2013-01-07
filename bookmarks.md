@@ -23,6 +23,7 @@ Mathematics
 * [The Endeavour - John D. Cook](http://www.johndcook.com/blog/)
 * [Symbolab - Formula Search Engine](http://www.symbolab.com/)
 * [Pixar's Use of Harmonic Functions](http://www1.ams.org/samplings/feature-column/fcarc-harmonic)
+* [2013 Problem](http://www.reddit.com/r/math/comments/16243n/quick_math_puzzle_for_2013/)
 
 Technical
 ---------
