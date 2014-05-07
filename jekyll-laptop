@@ -1,1 +1,1 @@
-jekyll --auto --pygments --no-lsi --safe --server 4000 ../../out/
+bundle exec jekyll serve
