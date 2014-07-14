@@ -7,22 +7,50 @@ mathjax: true
 <div class="row-fluid">
 	<div class="span2"></div>
 	<div class="span8">
+		<h1>Personal Projects</h1>
+
+		<div style="float: left; max-width: 300px; margin: 10px;">
+			<h2 style="text-align: center;"><a href="/tesserace/tests/3d.html" style="font-size: 70%;">3D Path Tracing Test</a></h2>
+
+			<p style="text-align: center;">
+				<a href="/tesserace/tests/3d.html"><img src="/img/tesserace-3d-distance-field-glass.png" alt="3D rendering of an empty water glass on a wood floor"></a>
+			</p>
+
+			<p>
+				Works in browsers with WebGL enabled. Uses GLSL mainly for the path tracing, and has fairly realistic light transport (not currently spectral or polarized).
+			</p>
+		</div>
+		<div style="clear: both;"></div>
+
 		<h1>Problems</h1>
 		<p class="lead">
 			Things I'm working on. <strong>Feedback encouraged!</strong>
 		</p>
 
-		{% for problem in site.categories.problem %}
 		<div style="float: left; max-width: 300px; margin: 10px;">
-			<h2><a href="{{ problem.url | replace:'.html','' }}" style="font-size: 70%;">{{ problem.title }}</a></h2>
+			<h2 style="text-align: center;"><a href="/problems/flattening-convolution" style="font-size: 70%;">Flattening Convolution</a></h2>
 
-			<p>{{problem.lead}}</p>
+			<p style="text-align: center;">
+				<a href="/problems/flattening-convolution"><img src="/img/flattening-convolution.png" alt="Black-and-white image that averages to exactly in-between for every circle of the radius shown"></a>
+			</p>
+
+			<p>
+				Imagine someone tells you of a magical landscape where everywhere you go, the average elevation within 1km is always the same. Is there any way this landscape can have hills?
+			</p>
 
 			<p style="text-align: right; margin-right: 20px;">
-				<a href="{{ problem.url | replace:'.html','' }}">read more...</a>
+				<a href="/problems/flattening-convolution">read more...</a>
 			</p>
 		</div>
-		{% endfor %}
+		<div style="float: left; max-width: 300px; margin: 10px;">
+			<h2 style="text-align: center;"><a href="/problems/additive-subset-picking" style="font-size: 70%;">Additive Subset Picking</a></h2>
+
+			<p>How can we choose a subset of $\{1,\ldots,n\}$ with as many elements as possible such that the sum of any two elements is distinct?</p>
+
+			<p style="text-align: right; margin-right: 20px;">
+				<a href="/problems/additive-subset-picking">read more...</a>
+			</p>
+		</div>
 		<div style="clear: both;"></div>
 
 		<h1>Coming Soon</h1>
