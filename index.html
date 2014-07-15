@@ -4,71 +4,71 @@ categories: home
 mathjax: true
 ---
 
-<div class="row-fluid">
-	<div class="span2"></div>
-	<div class="span8">
-		<h1>Personal Projects</h1>
+<div style="display: table; width: 100%;">
+	<div style="display: table-cell; text-align: center; vertical-align: middle;">
+		<div style="display: inline-block;">
+			<h1 class="index-section">Personal Projects</h1>
 
-		<div style="float: left; max-width: 300px; margin: 10px;">
-			<h2 style="text-align: center;"><a href="/tesserace/tests/3d.html" style="font-size: 70%;">3D Path Tracing Test</a></h2>
+			<div>
+				<div class="index-thumbnail"><a href="/tesserace/tests/3d.html"><img src="/img/tesserace-3d-distance-field-glass.png" alt="3D rendering of an empty water glass on a wood floor"></a></div>
+				<div class="index-description">
+					<h2 class="index-header"><a href="/tesserace/tests/3d.html">3D Path Tracing Test</a></h2>
 
-			<p style="text-align: center;">
-				<a href="/tesserace/tests/3d.html"><img src="/img/tesserace-3d-distance-field-glass.png" alt="3D rendering of an empty water glass on a wood floor"></a>
-			</p>
+					<p class="index-paragraph">
+						[2014, JS] Works in browsers with WebGL enabled. Uses GLSL mainly for the path tracing, and has fairly realistic light transport (not currently spectral or polarized).
+					</p>
+				</div>
+			</div>
+			<div class="index-between"></div>
 
-			<p>
-				[2014, JS] Works in browsers with WebGL enabled. Uses GLSL mainly for the path tracing, and has fairly realistic light transport (not currently spectral or polarized).
-			</p>
-		</div>
+			<div>
+				<div class="index-thumbnail"><a href="https://github.com/jonathanolson/sudog"><img src="/img/sudog-gui.png" alt="Screenshot of Sudog showing a sudoku pattern"></a></div>
+				<div class="index-description">
+					<h2 class="index-header"><a href="https://github.com/jonathanolson/sudog">Sudoku solving assistant</a></h2>
 
-		<div style="float: left; max-width: 300px; margin: 10px;">
-			<h2 style="text-align: center;"><a href="https://github.com/jonathanolson/sudog" style="font-size: 70%;">Sudoku solving assistant</a></h2>
+					<p class="index-paragraph">
+						[2008, C++] Highlights common human-understandable patterns to eliminate candidates, using strategies up to
+						swordfish/y-wing/coloring. Includes a command-line solver that outputs postscript or SVG step-by-step solution
+						guides, and includes a GTK+/Cairo user interface for interactive solving.
+					</p>
+				</div>
+			</div>
+			<div class="index-between"></div>
 
-			<p style="text-align: center;">
-				<a href="https://github.com/jonathanolson/sudog"><img src="/img/sudog-gui.png" alt="Screenshot of Sudog showing a sudoku pattern"></a>
-			</p>
+			<h1 class="index-section">Problems</h1>
 
-			<p>
-				[2008, C++] Highlights common human-understandable patterns to eliminate candidates, using strategies up to
-				swordfish/y-wing/coloring. Includes a command-line solver that outputs postscript or SVG step-by-step solution
-				guides, and includes a GTK+/Cairo user interface for interactive solving.
-			</p>
+			<div>
+				<div class="index-thumbnail"><a href="/problems/flattening-convolution"><img src="/img/flattening-convolution.png" alt="Black-and-white image that averages to exactly in-between for every circle of the radius shown"></a></div>
+				<div class="index-description">
+					<h2 class="index-header"><a href="/problems/flattening-convolution">Flattening Convolution</a></h2>
+
+					<p class="index-paragraph">
+						Imagine someone tells you of a magical landscape where everywhere you go, the average elevation within 1km is always the same. Is there any way this landscape can have hills?
+					</p>
+
+					<p style="text-align: right;">
+						<a href="/problems/flattening-convolution">read more...</a>
+					</p>
+				</div>
+			</div>
+			<div class="index-between"></div>
+
+			<div>
+				<div class="index-thumbnail"><a href="/problems/additive-subset-picking"><div class="index-thumbnail-placeholder"></div></a></div>
+				<div class="index-description">
+					<h2 class="index-header"><a href="/problems/additive-subset-picking">Additive Subset Picking</a></h2>
+
+					<p class="index-paragraph">
+						How can we choose a subset of $\{1,\ldots,n\}$ with as many elements as possible such that the sum of any two elements is distinct?
+					</p>
+				</div>
+			</div>
+			<div class="index-between"></div>
 		</div>
 
 		<div style="clear: both;"></div>
 
-		<h1>Problems</h1>
-		<p class="lead">
-			Things I'm working on. <strong>Feedback encouraged!</strong>
-		</p>
-
-		<div style="float: left; max-width: 300px; margin: 10px;">
-			<h2 style="text-align: center;"><a href="/problems/flattening-convolution" style="font-size: 70%;">Flattening Convolution</a></h2>
-
-			<p style="text-align: center;">
-				<a href="/problems/flattening-convolution"><img src="/img/flattening-convolution.png" alt="Black-and-white image that averages to exactly in-between for every circle of the radius shown"></a>
-			</p>
-
-			<p>
-				Imagine someone tells you of a magical landscape where everywhere you go, the average elevation within 1km is always the same. Is there any way this landscape can have hills?
-			</p>
-
-			<p style="text-align: right; margin-right: 20px;">
-				<a href="/problems/flattening-convolution">read more...</a>
-			</p>
-		</div>
-		<div style="float: left; max-width: 300px; margin: 10px;">
-			<h2 style="text-align: center;"><a href="/problems/additive-subset-picking" style="font-size: 70%;">Additive Subset Picking</a></h2>
-
-			<p>How can we choose a subset of $\{1,\ldots,n\}$ with as many elements as possible such that the sum of any two elements is distinct?</p>
-
-			<p style="text-align: right; margin-right: 20px;">
-				<a href="/problems/additive-subset-picking">read more...</a>
-			</p>
-		</div>
-		<div style="clear: both;"></div>
-
-		<h1>Coming Soon</h1>
+<!-- 		<h1>Coming Soon</h1>
 		<ul>
 			<li>Topswops</li>
 			<li>Parking choices to avoid being hit while away</li>
@@ -80,7 +80,6 @@ mathjax: true
 			<li>Improve code syntax highlighting colors</li>
 			<li>Maybe some hexagons?</li>
 			<li>Generalizations of <a href="http://www.reddit.com/r/math/comments/16243n/quick_math_puzzle_for_2013/">This 2013 problem</a></li>
-		</ul>
+		</ul> -->
 	</div>
-	<div class="span2"></div>
 </div>

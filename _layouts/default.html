@@ -41,23 +41,46 @@
 	</script>
 </head>
 <body>
-	<div class="navbar navbar-inverse navbar-static-top">
-		<div class="navbar-inner">
-			<a class="brand" href="/">Jonathan Olson</a>
-			<ul class="nav">
-				<li {% if page.categories contains 'home' %}class="active"{% endif %}><a href="/">Home</a></li>
-				<li {% if page.categories contains 'problem' %}class="active"{% endif %}><a href="/">Problems</a></li>
-				<li><a href="https://github.com/jonathanolson">GitHub</a></li>
-				<li><a href="https://twitter.com/combinatoric">Twitter</a></li>
-				<li {% if page.categories contains 'about' %}class="active"{% endif %}><a href="/about">About</a></li>
-			</ul>
+	<div class="sticky-wrapper">
+		<div class="navbar navbar-inverse navbar-static-top">
+			<div class="navbar-inner">
+				<a class="brand" href="/">Jonathan Olson</a>
+				<ul class="nav">
+					<li {% if page.categories contains 'home' %}class="active"{% endif %}><a href="/">Home</a></li>
+					<li {% if page.categories contains 'problem' %}class="active"{% endif %}><a href="/">Problems</a></li>
+					<li><a href="https://github.com/jonathanolson">GitHub</a></li>
+					<li><a href="https://twitter.com/combinatoric">Twitter</a></li>
+					<li {% if page.categories contains 'about' %}class="active"{% endif %}><a href="/about">About</a></li>
+				</ul>
+			</div>
 		</div>
+		<script src="/js/main.js"></script>
+
+		<div style="height: 20px;"></div>
+
+		<div id="default-content">
+			{{ content }}
+		</div>
+
+		<div class="sticky-push"></div>
 	</div>
-	<script src="/js/main.js"></script>
-
-	<div style="height: 20px;"></div>
-
-	{{ content }}
+	<div class="footer">
+		<div class="footer-main">
+			<div class="footer-inner">
+				<div class="footer-name">Jonathan Olson</div>
+				<dl>
+					<dt>Email</dt>
+					<dd><script>document.write('<a href="mailto:jonathan.olson' + '@colorado.edu">jonathan.olson' + '@colorado.edu</a>');</script></dd>
+					<dt>GitHub</dt>
+					<dd><a href="https://github.com/jonathanolson">github.com/jonathanolson</a></dd>
+					<dt>Twitter</dt>
+					<dd><a href="https://twitter.com/combinatoric">@combinatoric</a></dd>
+				</dl>
+				<div style="clear: both;"></div>
+			</div>
+		</div>
+		<div id="footer-banner-holder"></div>
+	</div>
 
 	<script src="/js/bootstrap.min.js"></script>
 	<script>
@@ -71,26 +94,29 @@
 			}
 
 			// track the patchwork banner and regenerate it if needed (width being too small)
-			var banner = null;
+			var navBanner = null;
+			var footBanner = null;
 			function updateBanner() {
 				var curWidth = $('.navbar').width();
 
 				// remove the banner if the width is too small, and make it regenerate
-				if( banner != null && lastWidth < curWidth ) {
-					banner.remove();
-					banner = null;
+				if( navBanner !== null && lastWidth < curWidth ) {
+					footBanner.remove();
+					footBanner = null;
+					navBanner.remove();
+					navBanner = null;
 					while( lastWidth < curWidth && lastWidth > 0 ) {
 						lastWidth *= 2;
 					}
 				}
 
 				// build the banner
-				if( banner == null ) {
-					banner = jonathanolson.createPatchwork( lastWidth, lastHeight );
-					$('.navbar-inner').append( banner );
+				if( navBanner === null ) {
+					navBanner = jonathanolson.createPatchwork( lastWidth, lastHeight );
+					$('.navbar-inner').append( navBanner );
+					footBanner = jonathanolson.createPatchwork( lastWidth + 40, 40 ); // always 40 for the footer
+					$('#footer-banner-holder').append( footBanner );
 				}
-
-				return 0;
 			}
 
 			updateBanner();
