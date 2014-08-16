@@ -12,7 +12,7 @@ mathjax: true
 			<div>
 				<div class="index-thumbnail"><a href="/tesserace/tests/3d.html"><img src="/img/tesserace-3d-distance-field-glass.png" alt="3D rendering of an empty water glass on a wood floor"></a></div>
 				<div class="index-description">
-					<h2 class="index-header"><a href="/tesserace/tests/3d.html">3D Path Tracing Test</a></h2>
+					<h2 class="index-header"><a href="/tesserace/tests/3d.html">Tesserace: 3D Path Tracing Test</a></h2>
 
 					<p class="index-paragraph">
 						[2014, JS] Works in browsers with WebGL enabled. Uses GLSL mainly for the path tracing, and has fairly realistic light transport (not currently spectral or polarized).
@@ -24,12 +24,35 @@ mathjax: true
 			<div>
 				<div class="index-thumbnail"><a href="https://github.com/jonathanolson/sudog"><img src="/img/sudog-gui.png" alt="Screenshot of Sudog showing a sudoku pattern"></a></div>
 				<div class="index-description">
-					<h2 class="index-header"><a href="https://github.com/jonathanolson/sudog">Sudoku solving assistant</a></h2>
+					<h2 class="index-header"><a href="https://github.com/jonathanolson/sudog">Sudog: Sudoku solving assistant</a></h2>
 
 					<p class="index-paragraph">
-						[2008, C++] Highlights common human-understandable patterns to eliminate candidates, using strategies up to
+						[2008, C++, Linux] Highlights common human-understandable patterns to eliminate candidates, using strategies up to
 						swordfish/y-wing/coloring. Includes a command-line solver that outputs postscript or SVG step-by-step solution
 						guides, and includes a GTK+/Cairo user interface for interactive solving.
+					</p>
+				</div>
+			</div>
+			<div class="index-between"></div>
+
+			<h1 class="index-section">Experiments</h1>
+
+			<div>
+				<div class="index-thumbnail"><a href="/experiments/browser-specific-content-using-canvas-quirks"><canvas id="artCanvas" width="256" height="256"></canvas></a></div>
+				<div class="index-description">
+					<h2 class="index-header"><a href="/experiments/browser-specific-content-using-canvas-quirks">Browser-specific content using Canvas quirks</a></h2>
+
+					<p class="index-paragraph">
+						Using edge-cases in HTML5 Canvas implementations, it's possible to create images that are different on most
+						browsers without querying any browser information (via browser detection or reading Canvas pixels).
+					</p>
+					<p class="index-paragraph">
+						Not only does this allow creating unique images (try viewing the image to the left on other browsers), but
+						it's possible to craft the ability to decide what to show for each browser.
+					</p>
+
+					<p style="text-align: right;">
+						<a href="/experiments/browser-specific-content-using-canvas-quirks">see demo...</a>
 					</p>
 				</div>
 			</div>
@@ -68,6 +91,26 @@ mathjax: true
 				</div>
 			</div>
 			<div class="index-between"></div>
+
+			<h1 class="index-section">Notes</h1>
+
+			<div>
+				<div class="index-thumbnail"><a href="/notes/canvas-browser-specific-quirks"><img src="/img/canvas-diff.png" alt="Four quirks that can differentiate between popular browsers"></a></div>
+				<div class="index-description">
+					<h2 class="index-header"><a href="/notes/canvas-browser-specific-quirks">Canvas Browser-Specific Quirks</a></h2>
+
+					<p class="index-paragraph">
+						Currently, there are a number of HTML5 Canvas edge cases that display differently on different browsers.
+						This is a list of all quirks that I've come across so far in
+						<a href="http://phetsims.github.io/scenery/">Scenery</a> development.
+					</p>
+
+					<p style="text-align: right;">
+						<a href="/notes/canvas-browser-specific-quirks">read more...</a>
+					</p>
+				</div>
+			</div>
+			<div class="index-between"></div>
 		</div>
 
 		<div style="clear: both;"></div>
@@ -87,3 +130,11 @@ mathjax: true
 		</ul> -->
 	</div>
 </div>
+
+<script src="/js/canvas-diff/quirk-art.js"></script>
+<script type="text/javascript">
+	var artCanvas = document.getElementById( 'artCanvas' );
+  var artContext = artCanvas.getContext( '2d' );
+
+  quirkArt( artCanvas, artContext );
+</script>

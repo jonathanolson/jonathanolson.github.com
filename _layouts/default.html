@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>{% if page.title%}{{ page.title }} - {% endif %}Jonathan Olson</title>
 	<link href="/css/bootstrap.min.css" rel="stylesheet" media="screen">
@@ -47,7 +48,9 @@
 				<a class="brand" href="/">Jonathan Olson</a>
 				<ul class="nav">
 					<li {% if page.categories contains 'home' %}class="active"{% endif %}><a href="/">Home</a></li>
-					<li {% if page.categories contains 'problem' %}class="active"{% endif %}><a href="/">Problems</a></li>
+					{% if page.categories contains 'problem' %}<li class="active"><a href="/">Problems</a></li>{% endif %}
+					{% if page.categories contains 'notes' %}<li class="active"><a href="/">Notes</a></li>{% endif %}
+					{% if page.categories contains 'experiments' %}<li class="active"><a href="/">Experiments</a></li>{% endif %}
 					<li><a href="https://github.com/jonathanolson">GitHub</a></li>
 					<li><a href="https://twitter.com/combinatoric">Twitter</a></li>
 					<li {% if page.categories contains 'about' %}class="active"{% endif %}><a href="/about">About</a></li>
