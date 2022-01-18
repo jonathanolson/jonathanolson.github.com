@@ -24,6 +24,15 @@
       padding: 0;
     }
   </style>
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-9TVKLQQ7JT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-9TVKLQQ7JT');
+  </script>
 </head>
 <body>
 
@@ -36,15 +45,14 @@
     // import axon from '../chipper/dist/js/axon/js/main.js';
     // import phetCore from '../chipper/dist/js/phet-core/js/main.js';
 
-    import crateTreeTotal from './data/crate.tree.total.js';
-    import traceTreeTotal from './data/trace.tree.total.js';
-    // import tree from './data/alter.tree.js';
     import totalTraceTree from './data/trace.tree.total.js';
     import totalSlateTree from './data/slate.tree.total.js';
     import totalCrateTree from './data/crate.tree.total.js';
+    import totalCraneTree from './data/crane.tree.total.js';
     import minRanceTree from './data/rance.tree.js';
     import minAlterTree from './data/alter.tree.js';
     import minRatedTree from './data/rated.tree.js';
+    import minLanceTree from './data/lance.tree.js';
     import targetWords from './data/targetWords.js';
 
     const fontFamily = "'Clear Sans', 'Helvetica Neue', Arial, sans-serif";
@@ -227,7 +235,7 @@
         this.addChild( letterBox );
 
         if ( !isLeaf ) {
-          this.addChild( new scenery.Text( `${computeAverageGuesses( tree ).toFixed( 2 )} avg. guesses, ${words.length} words, ${Object.values( tree.map ).length} colorings`, { fontSize: 14, fontFamily: fontFamily, fill: gray } ) );
+          this.addChild( new scenery.Text( `${computeAverageGuesses( tree ).toFixed( 2 )} ${depth === 1 ? 'total avg. guesses' : 'avg. guesses left'}, ${words.length} words, ${Object.values( tree.map ).length} colorings`, { fontSize: 14, fontFamily: fontFamily, fill: gray } ) );
         }
         else {
           this.addChild( new scenery.Text( `solved`, { fontSize: 14, fontFamily: fontFamily, fill: gray, layoutOptions: { topMargin: 5 } } ) );
@@ -261,6 +269,7 @@
     }
 
     const treeProperty = new axon.Property( null );
+    window.treeProperty = treeProperty;
 
     const scene = new scenery.Node();
     const display = new scenery.Display( scene, {
@@ -286,7 +295,7 @@
       }
     } );
 
-    const helpText = new scenery.RichText( 'Click one of the starting guesses, I\'ll give you the rest!<br><br>Click the letters to change the color to match your result, then you\'ll be given another guess (or click a thumbnail option below).<br><br>Optimized to minimize the number of total guesses. Best is ~3.43 per win. <a href="{{about}}">Learn More</a>.', {
+    const helpText = new scenery.RichText( 'Click one of the starting guesses, I\'ll give you the rest!<br><br>Click the letters to change the color to match your result, then you\'ll be given another guess (or click a thumbnail option below).<br><br>Optimized to minimize the number of total guesses. Best is ~3.42 per win. <a href="{{about}}">Learn More</a>.', {
       lineWrap: 330,
       font: new scenery.Font( { size: 14, family: fontFamily } ),
       layoutOptions: { topMargin: 15 },
@@ -299,7 +308,7 @@
       const label = new scenery.RichText( `<u>${tree.guess.toUpperCase()}</u>`, {
         font: new scenery.Font( { size: 14, fontFamily: fontFamily, weight: '700' } ),
         cursor: 'pointer',
-        fill: '#0645AD'
+        fill: 'rgb(27,0,241)'
       } );
 
       label.addInputListener( new scenery.FireListener( {
@@ -325,9 +334,10 @@
               orientation: 'vertical',
               children: [
                 new scenery.Text( 'Fastest Average', { font: selectionHeaderFont, fill: gray, layoutOptions: { bottomMargin: 5 } } ),
+                createTreeButton( totalCrateTree ),
                 createTreeButton( totalTraceTree ),
                 createTreeButton( totalSlateTree ),
-                createTreeButton( totalCrateTree )
+                createTreeButton( totalCraneTree )
               ]
             } ),
             new scenery.FlowBox( {
@@ -335,8 +345,9 @@
               children: [
                 new scenery.Text( 'Fewest 5+', { font: selectionHeaderFont, fill: gray, layoutOptions: { bottomMargin: 5 } } ),
                 createTreeButton( minRanceTree ),
-                createTreeButton( minAlterTree ),
-                createTreeButton( minRatedTree )
+                createTreeButton( minRatedTree ),
+                createTreeButton( minLanceTree ),
+                createTreeButton( minAlterTree )
               ]
             } )
           ]
