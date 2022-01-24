@@ -73,8 +73,8 @@ categories: experiments
 <h2>Results</h2>
 <p>
   The best strategy I've found for the metric of "most 4-guess words" starts with RANCE (99.22%, missing just 18 words),
-  with LANCE/RATED/ALTER close by.
-  The best for "fewest average guesses" is currently CRATE/TRACE (3.42419), with SLATE and CRANE close by.
+  with RANTS/RATED/RONTE/ALTER close by.
+  The best for "fewest average guesses" is currently SALET (3.42117), with REAST/CRATE/TRACE/SLATE close by.
 </p>
 <p>
   All of these examples are available at <a href="https://jonathanolson.net/wordle-solver/">https://jonathanolson.net/wordle-solver/</a>.
@@ -90,8 +90,7 @@ categories: experiments
   (createTree).
 </p>
 <p>
-  I'm <a href="https://github.com/jonathanolson/wordle-solver/blob/master/server/scanGuess.js">scanning for any 4-guess-guaranteed strategies</a>,
-  using a separate optimized section of code that isn't constructing a persistent tree. We're very quickly able to tell
-  if a 3rd guess will result in a coloring/score that has two possible targets (which would require 5 guesses total),
-  so it is mostly iteration over the 1st and 2nd guesses.
+  I've used <a href="https://github.com/jonathanolson/wordle-solver/blob/master/server/scanGuess.js">scanning for 4-guess strategies</a>,
+  using a separate optimized section of code that isn't constructing a persistent tree. It doesn't look possible to have
+  a strategy that can always solve Wordle puzzles in only 4 guesses every time.
 </p>
