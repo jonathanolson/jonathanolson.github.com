@@ -48,6 +48,8 @@
     import minLanceTree from './data/lance.tree.js';
     import minRantsTree from './data/rants.tree.js';
     import minRonteTree from './data/ronte.tree.js';
+    import hardSaletTree from './data/salet.tree.hard.js';
+    import hardCrampTree from './data/cramp.tree.hard.js';
     import targetWords from './data/targetWords.js';
 
     const fontFamily = "'Clear Sans', 'Helvetica Neue', Arial, sans-serif";
@@ -323,6 +325,7 @@
         helpText,
         new scenery.HBox( {
           layoutOptions: { topMargin: 10 },
+          align: 'top',
           spacing: 10,
           children: [
             new scenery.FlowBox( {
@@ -348,7 +351,15 @@
                 createTreeButton( minAlterTree ),
                 createTreeButton( minLanceTree )
               ]
-            } )
+            } ),
+            new scenery.FlowBox( {
+              orientation: 'vertical',
+              children: [
+                new scenery.Text( 'Hard Mode', { font: selectionHeaderFont, fill: gray, layoutOptions: { bottomMargin: 5 } } ),
+                createTreeButton( hardSaletTree ),
+                createTreeButton( hardCrampTree )
+              ]
+            } ),
           ]
         } ),
         wordNodeContainer
