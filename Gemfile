@@ -5,3 +5,5 @@ gem 'github-pages'
 
 gem 'wdm', '>= 0.1.0' if RbConfig::CONFIG['target_os'] =~ /mswin|mingw|cygwin/i
 
+
+gem "webrick", "~> 1.7"

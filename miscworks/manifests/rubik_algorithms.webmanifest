@@ -1,0 +1,20 @@
+{
+  "short_name": "Rubik Algorithms",
+  "name": "Rubik Algorithms",
+  "icons": [
+    {
+      "src": "../images/rubik_algorithms-512px.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    },
+    {
+      "src": "../images/rubik_algorithms-192px.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    }
+  ],
+  "start_url": "../build/rubik_algorithms.html",
+  "background_color": "#ffffff",
+  "display": "standalone",
+  "scope": "../../"
+}
