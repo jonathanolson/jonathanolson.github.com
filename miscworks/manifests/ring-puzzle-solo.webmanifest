@@ -1,0 +1,20 @@
+{
+  "short_name": "Puzzle Solo",
+  "name": "Ring Puzzle: Solo",
+  "icons": [
+    {
+      "src": "../images/ring-puzzle-solo-512px.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    },
+    {
+      "src": "../images/ring-puzzle-solo-192px.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    }
+  ],
+  "start_url": "../build/ring-puzzle-solo.html",
+  "background_color": "#888",
+  "display": "standalone",
+  "scope": "../../"
+}
