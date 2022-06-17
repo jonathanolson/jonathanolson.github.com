@@ -1,0 +1,20 @@
+{
+  "short_name": "Boxing",
+  "name": "Boxing",
+  "icons": [
+    {
+      "src": "../images/boxing-512px.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    },
+    {
+      "src": "../images/boxing-192px.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    }
+  ],
+  "start_url": "../build/boxing.html",
+  "background_color": "#EEEEEE",
+  "display": "standalone",
+  "scope": "../../"
+}
