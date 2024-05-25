@@ -1,1 +1,0 @@
-import{d as o,h as t,e as s,j as d,i,k as l,l as g,q as G,r as B,t as m,u,w as h,x}from"./patternBoards-CAxgrjj1.js";import{_ as r}from"./getCoordinateClusteredMap-DnTHDDo2.js";const n=[o,t,s,d,i,l,g,G,B,m,u,h,x],p=Math.min(...n.map(a=>a.length)),q=r.range(0,p).map(a=>r.uniq(n.flatMap(e=>e[a])));export{q as g};
