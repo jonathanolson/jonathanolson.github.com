@@ -1,1 +1,0 @@
-import{u as o,y as t,v as s,A as d,z as i,C as l,D as g,R as G,S as B,T as m,U as u,V as h,W as p}from"./patternBoards-CdPs5rJx.js";import{_ as r}from"./getCoordinateClusteredMap-s__X_7ZN.js";const n=[o,t,s,d,i,l,g,G,B,m,u,h,p],x=Math.min(...n.map(a=>a.length)),c=r.range(0,x).map(a=>r.uniq(n.flatMap(e=>e[a])));export{c as g};
