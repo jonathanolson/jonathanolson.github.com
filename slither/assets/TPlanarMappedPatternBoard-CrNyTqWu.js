@@ -1,0 +1,1 @@
+import{m as e,A as n,B as s,C as p,D as i}from"./patternBoards-DyfRjV5l.js";const d=a=>JSON.stringify({patternBoard:e(a.patternBoard.descriptor),planarPatternMap:n(a.planarPatternMap)}),P=a=>{const r=JSON.parse(a),t=new s(p(r.patternBoard));return{patternBoard:t,planarPatternMap:i(r.planarPatternMap,t)}};export{P as d,d as s};

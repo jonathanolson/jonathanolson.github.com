@@ -1,1 +1,0 @@
-import{q as o,t,r as s,v as d,u as i,w as l,x as g,O as G,P as B,Q as m,R as u,S as h,T as x}from"./patternBoards-BWMN3hEW.js";import{_ as r}from"./createBoardDescriptor-DQiPBFka.js";const n=[o,t,s,d,i,l,g,G,B,m,u,h,x],p=Math.min(...n.map(a=>a.length)),c=r.range(0,p).map(a=>r.uniq(n.flatMap(e=>e[a])));export{c as g};
