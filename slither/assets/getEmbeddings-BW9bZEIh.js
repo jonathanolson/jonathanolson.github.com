@@ -1,0 +1,1 @@
+import{c as l}from"./computeEmbeddings-DgNcEsIq.js";import{a as n,b as p}from"./createBoardDescriptor-DQiPBFka.js";const d=new WeakMap,r=new WeakMap,g=(a,t)=>{n()&&p(a),n()&&p(t);let e=r.get(a)??null;e||(e=new WeakMap,r.set(a,e));let s=e.get(t)??null;return s||(s=l(a,t),e.set(t,s)),s};export{g,d as p};
