@@ -6,33 +6,33 @@ mathjax: false
 hidecomments: true
 ---
 
-<script async type="module" crossorigin src="./assets/index-CCorLAVc.js"></script>
+<script async type="module" crossorigin src="./assets/index-DaHX5j-E.js"></script>
 <link rel="modulepreload" crossorigin href="./assets/UnivariatePolynomial-1rLpyqfN.js">
 <link rel="modulepreload" crossorigin href="./assets/getCoordinateClusteredMap-Bd_wM-c0.js">
-<link rel="modulepreload" crossorigin href="./assets/PhetioControlledVisibilityProperty-CzTgKbkx.js">
-<link rel="modulepreload" crossorigin href="./assets/TextPushButton-Coq2A-51.js">
-<link rel="modulepreload" crossorigin href="./assets/BasicPuzzle-DGsxIJRd.js">
-<link rel="modulepreload" crossorigin href="./assets/Theme-DMXUyWiP.js">
-<link rel="modulepreload" crossorigin href="./assets/autoSolver-D0maTTyV.js">
-<link rel="modulepreload" crossorigin href="./assets/ShadedSphereNode-uuPU3yfJ.js">
+<link rel="modulepreload" crossorigin href="./assets/PhetioControlledVisibilityProperty-Dss8jcpz.js">
+<link rel="modulepreload" crossorigin href="./assets/TextPushButton-DBC8F85l.js">
+<link rel="modulepreload" crossorigin href="./assets/BasicPuzzle-CZB302k-.js">
+<link rel="modulepreload" crossorigin href="./assets/Theme-QL2clqh7.js">
+<link rel="modulepreload" crossorigin href="./assets/autoSolver-DHINn9O_.js">
+<link rel="modulepreload" crossorigin href="./assets/ShadedSphereNode-DrE9AnXN.js">
 <link rel="modulepreload" crossorigin href="./assets/logic-solver-DfsVuGQ5.js">
 <link rel="modulepreload" crossorigin href="./assets/operations-BMyV0DHx.js">
 <link rel="modulepreload" crossorigin href="./assets/SectorOnlyOneFeature-B1Nn5A2g.js">
 <link rel="modulepreload" crossorigin href="./assets/getPeriodicTilingGenerator-zRiID_iR.js">
-<link rel="modulepreload" crossorigin href="./assets/DisplayEmbedding-DY121lQN.js">
+<link rel="modulepreload" crossorigin href="./assets/DisplayEmbedding-DnrptpFH.js">
 <link rel="modulepreload" crossorigin href="./assets/compression-CFlaLHJe.js">
-<link rel="modulepreload" crossorigin href="./assets/TPuzzle-CoMNzdmp.js">
+<link rel="modulepreload" crossorigin href="./assets/TPuzzle-LMuvlbsl.js">
 <link rel="modulepreload" crossorigin href="./assets/PatternBoardSolver-vRQRWARQ.js">
 <link rel="modulepreload" crossorigin href="./assets/patternBoards-CVo-HFgJ.js">
 <link rel="modulepreload" crossorigin href="./assets/FeatureSet-RmLjQa6B.js">
 <link rel="modulepreload" crossorigin href="./assets/PatternRule-Bgza_EDD.js">
 <link rel="modulepreload" crossorigin href="./assets/BoardPatternBoard-C6phJJV1.js">
-<link rel="modulepreload" crossorigin href="./assets/getBestDisplayEmbedding-CAcmD-wd.js">
-<link rel="modulepreload" crossorigin href="./assets/PatternNode-Dqp5oWZV.js">
-<link rel="modulepreload" crossorigin href="./assets/PatternRuleNode-BIxdgGZq.js">
-<link rel="stylesheet" crossorigin href="./assets/index-DwBAIZLg.css">
+<link rel="modulepreload" crossorigin href="./assets/getBestDisplayEmbedding-DNU4GTpP.js">
+<link rel="modulepreload" crossorigin href="./assets/PatternNode-CS7ZhFYM.js">
+<link rel="modulepreload" crossorigin href="./assets/PatternRuleNode-D4U9iKWo.js">
+<link rel="stylesheet" crossorigin href="./assets/index-Mo4FVqaj.css">
 
-<h1>Slitherlink</h1>
+<h1>How Slitherlink Should be Solved</h1>
 
 Building a Slitherlink app that pushes the boundaries of puzzle solving on both phone and desktop.
 
@@ -42,6 +42,14 @@ Building a Slitherlink app that pushes the boundaries of puzzle solving on both 
 
     <p>
       Try out Slitherlink puzzles and challenge yourself with various techniques and strategies.
+    </p>
+
+    <p>
+      <strong>This is unfinished and rough around the edges, it will be more finished and user-friendly soon.</strong>
+    </p>
+
+    <p>
+      It is highly recommended to read the guide below to understand the visual representations used in the app.
     </p>
 
     <p>
@@ -55,6 +63,8 @@ Building a Slitherlink app that pushes the boundaries of puzzle solving on both 
     <p>
       Enhance your skills by browsing the library of patterns, including coloring and highlander rules.
     </p>
+
+    <strong>This is unfinished and rough around the edges, it will be more finished and user-friendly soon.</strong>
 
     <p>
       <a href="./rule-explorer"><img src="./images/example-pattern-classic.png" style="width: auto; height: auto; max-width: 300px;" alt="Classic Pattern"></a>
@@ -892,15 +902,398 @@ a <em>thin</em> style, and X's are represented simply by the absence of a line.
 
 <h2>Coloring</h2>
 
+<p>
+  Since the loop is a <a href="https://en.wikipedia.org/wiki/Jordan_curve_theorem">Jordan curve</a>, it divides the cells
+  into two regions, one inside and one outside. This can be used to deduce lines and X's, or even to solve directly.
+</p>
+
+<p>
+  Coloring is where we mark the deduction "this cell will be in the same/opposite region as this other cell".
+</p>
+
+<div class="examples">
+  <div class="example">
+    <div id="solved-puzzle" class="example-div"></div>
+    <span class="caption">
+      In this solved puzzle, the outside is white, and the inside is gray.
+    </span>
+  </div>
+</div>
+
+<p>
+  A common way of solving with coloring is to mark colors just for the inside and outside of the loop.
+</p>
+
+<div class="examples">
+  <div class="example">
+    <div id="partial-inside-outside-puzzle" class="example-div"></div>
+    <span class="caption">
+      Inside/outside colors marked (not using general coloring, so lines are highlighted for visibility).
+    </span>
+  </div>
+</div>
+
+<p>
+  However, this is less helpful on larger puzzles, where we may be able to deduce coloring information in the middle,
+  and it is far from any inside/outside coloring.
+</p>
+
+<p>
+  When coloring, conceptually we get pairs of opposing regions (where every cell in the two different regions is of
+  opposite color, and every cell in the same region is of the same color).
+</p>
+
+<p>
+  To be able to solve with this information, it helps to use a single color hue for each region pair, but picking
+  a lighter color and darker color to indicate the "opposite" regions:
+</p>
+
+<div class="examples">
+  <div class="example">
+    <div id="coloring-pairs-puzzle" class="example-div"></div>
+    <span class="caption">
+      Pairs with a lighter and darker color with the same hue will be on opposite sides of the loop.
+      Note how coloring can be disconnected (the upper-right pair of 3's forces the left and right cells to have
+      opposite colors), and the only-one sector from the 1 in the bottom right also does the same.
+      Note the single-color region in the middle-to-upper-left: if it where white (outside), it would split the
+      puzzle into two disconnected regions (the upper left would be isolated), which is not valid. Thus we could mark it
+      as being the "inside" color!
+    </span>
+  </div>
+</div>
+
+<div class="examples">
+  <div class="example">
+    <div id="pure-coloring-pairs-puzzle" class="example-div"></div>
+    <span class="caption">
+      We can also display and solve using <em>only</em> the coloring information.
+    </span>
+  </div>
+</div>
+
+<p>
+  This user interface tries to make colors as clear as possible (where pairs that are close to each other will have
+  different hues).
+</p>
+
+<p>
+  Additionally:
+</p>
+
+<ul>
+  <li>
+    Every line will force its adjacent cells to be of opposite colors.
+  </li>
+  <li>
+    Every X will force its adjacent cells to be of the same color.
+  </li>
+</ul>
+
+<p>
+  The opposite is also true:
+</p>
+
+<div class="examples">
+  <div class="example">
+    <div id="same-face-to-red-edge" class="example-div"></div>
+    <span class="caption">
+      If two adjacent cells have the same color, they must be separated by an X.
+    </span>
+  </div>
+</div>
+
+<div class="examples">
+  <div class="example">
+    <div id="opposite-face-to-black-edge" class="example-div"></div>
+    <span class="caption">
+      If two adjacent cells have the opposite color, they must be separated by a line.
+    </span>
+  </div>
+</div>
+
+<p>
+  We can work within the coloring system with a few fundamental patterns:
+</p>
+
+<div class="examples">
+  <div class="example">
+    <div id="color-no-checker" class="example-div"></div>
+    <span class="caption">
+      Checkerboard-like patterns aren't allowed (i.e. there cannot be four lines on a dot).
+    </span>
+  </div>
+</div>
+
+<div class="examples">
+  <div class="example">
+    <div id="color-no-checker-same" class="example-div"></div>
+    <span class="caption">
+      Another way checkerboard-like patterns aren't allowed.
+    </span>
+  </div>
+</div>
+
+<div class="examples">
+  <div class="example">
+    <div id="color-two-lines" class="example-div"></div>
+    <span class="caption">
+      Maximum of two lines per dot.
+    </span>
+  </div>
+</div>
+
+<p>
+  Many of the usual rules carry over, but some useful ones:
+</p>
+
+<div class="examples examples-flex">
+  <div class="example">
+    <div id="color-one-same-a" class="example-div"></div>
+  </div>
+  <div class="example">
+    <div id="color-one-same-b" class="example-div"></div>
+  </div>
+  <div class="example">
+    <div id="color-one-opposite-a" class="example-div"></div>
+  </div>
+  <div class="example">
+    <div id="color-one-opposite-b" class="example-div"></div>
+  </div>
+  <div class="example">
+    <div id="color-two-same-a" class="example-div"></div>
+  </div>
+  <div class="example">
+    <div id="color-two-same-b" class="example-div"></div>
+  </div>
+  <div class="example">
+    <div id="color-two-opposite-a" class="example-div"></div>
+  </div>
+  <div class="example">
+    <div id="color-two-opposite-b" class="example-div"></div>
+  </div>
+  <div class="example">
+    <div id="color-three-same-a" class="example-div"></div>
+  </div>
+  <div class="example">
+    <div id="color-three-same-b" class="example-div"></div>
+  </div>
+  <div class="example">
+    <div id="color-three-opposite-a" class="example-div"></div>
+  </div>
+  <div class="example">
+    <div id="color-three-opposite-b" class="example-div"></div>
+  </div>
+  <div class="example">
+    <div id="color-three-adjacent" class="example-div"></div>
+  </div>
+  <div class="example">
+    <div id="color-no-loop" class="example-div"></div>
+  </div>
+</div>
+
+<h2>Colors and Sectors</h2>
+
+<p>
+  Coloring can also directly imply sectors.
+</p>
+
+<div class="examples">
+  <div class="example">
+    <div id="color-opposite-to-only-one" class="example-div"></div>
+    <span class="caption">
+      Opposite colors are <em>equivalent</em> to only-one.
+    </span>
+  </div>
+</div>
+
+<div class="examples">
+  <div class="example">
+    <div id="color-same-to-not-one" class="example-div"></div>
+    <span class="caption">
+      Same colors are <em>equivalent</em> to not-one.
+    </span>
+  </div>
+</div>
+
+<div class="examples">
+  <div class="example">
+    <div id="only-one-to-color" class="example-div"></div>
+    <span class="caption">
+      Only-one is <em>equivalent</em> to opposite colors.
+    </span>
+  </div>
+</div>
+
+<div class="examples">
+  <div class="example">
+    <div id="not-one-to-color" class="example-div"></div>
+    <span class="caption">
+      Not-one is <em>equivalent</em> to same colors.
+    </span>
+  </div>
+</div>
+
+<p>
+  Both sectors and colors can propagate or be joined across disparate parts of a puzzle, and thus can be very powerful.
+</p>
+
 <h2>Highlander</h2>
 
 <p>
-  Since valid puzzles mut have a single unique solution, <a href="https://kwontomloop.com/forum.php?a=topic&topic_id=66&pg=2">highlander</a> rules ("there can be only one") may apply.
+  Since valid puzzles must have a single unique solution, we can actually apply additional deductions (generally based on
+  which cells are blank). These are called <a href="https://kwontomloop.com/forum.php?a=topic&topic_id=66&pg=2">highlander</a>
+  patterns ("there can be only one").
+</p>
+
+<p>
+  The core idea is that if adding a line or an X would result in a pattern that would <em>always</em> allow two solutions
+  to exist, then that line or X is <em>wrong</em> (since there is a unique solution), and the opposite must be added.
+</p>
+
+<p>
+  This can be considered to be less <em>pure</em>, since these pattern rules are <strong>incorrect if the puzzle has more than one solution</strong>,
+  since they are based on the assumption that there is a unique solution. If used on a puzzle with multiple solutions,
+  it can lead to finding <em>no</em> solution! Furthermore, puzzles are logically solvable <em>without</em> using highlander
+  deductions.
+</p>
+
+<p>
+  However, highlander deductions can be very powerful, and can be used to solve difficult puzzles quickly. Many people
+  rely on it as a key technique.
+</p>
+
+<p>
+  Patterns like this generally rely on certain cells being "blank" (i.e. not having a number), since that allows
+  for multiple solutions to exist. For highlander patterns, we will mark cells that <em>can</em> have numbers with
+  question marks.
+</p>
+
+<p>
+  The classic example of a highlander rule is the following:
+</p>
+
+<div class="examples">
+  <div class="example">
+    <div id="highlander-two" class="example-div"></div>
+    <span class="caption">
+      If a 2 has all four adjacent cells empty (no numbers), and has the double-X corner that forces it to be one of
+      two different configurations, then allowing the upper-left corner of the 2 to have the same double-X would
+      create two solutions.
+    </span>
+  </div>
+</div>
+
+<p>
+  For example:
+</p>
+
+<div class="examples">
+  <div class="example">
+    <div id="highlander-puzzle-0" class="example-div"></div>
+    <span class="caption">
+      Can you find the highlander deduction in this puzzle?
+    </span>
+  </div>
+</div>
+
+<div class="examples">
+  <div class="example">
+    <div id="highlander-puzzle-1" class="example-div"></div>
+    <span class="caption">
+      If there were X's at the red circles, then the blue and green paths would be interchangeable, creating two solutions
+      regardless of the rest of the puzzle (since there is no way for the rest of the puzzle to influence the choice between
+      the blue and green path).
+    </span>
+  </div>
+</div>
+
+<div class="examples">
+  <div class="example">
+    <div id="highlander-puzzle-2" class="example-div"></div>
+    <span class="caption">
+      Thus this highlander deduction is valid if the puzzle has a unique solution.
+    </span>
+  </div>
+</div>
+
+<h3>Common Highlander Patterns</h3>
+
+<p>
+  Here is a sampling of common highlander patterns:
+</p>
+
+<div class="examples examples-flex">
+  <div class="example">
+    <div id="highlander-a" class="example-div"></div>
+  </div>
+  <div class="example">
+    <div id="highlander-b" class="example-div"></div>
+  </div>
+  <div class="example">
+    <div id="highlander-c" class="example-div"></div>
+  </div>
+  <div class="example">
+    <div id="highlander-d" class="example-div"></div>
+  </div>
+  <div class="example">
+    <div id="highlander-e" class="example-div"></div>
+  </div>
+  <div class="example">
+    <div id="highlander-f" class="example-div"></div>
+  </div>
+  <div class="example">
+    <div id="highlander-g" class="example-div"></div>
+  </div>
+  <div class="example">
+    <div id="highlander-h" class="example-div"></div>
+  </div>
+  <div class="example">
+    <div id="highlander-i" class="example-div"></div>
+  </div>
+</div>
+
+<p>
+  Some of these are pretty hard to believe! Of note: they cannot be combined to make larger "combined" highlander rules,
+  since they need the exact pattern to match. The <a href="./rule-explorer">pattern explorer</a> can actually list out
+  all of the "excluded" solution patterns for each highlander rule (click on it), showing another solution that rules it out.
+</p>
+
+<p>
+  For example, see <a href="./rule?r=square-1-0%2FAQcODxARIib%2FExkbIRwe%2Fw%3D%3D">analysis for the first highlander case</a>,
+  or <a href="./rule?r=square-2-2%2FAQIGDg8QES8x%2Fy4hJ%2F8%3D">analysis for the last highlander case</a>.
+  Note that the "highlander duplicates" are given in groups (usually pairs), showing which solutions are excluded and why.
+</p>
+
+<p>
+  The most counter-intuitive thing about excluded solutions (that I <em>swear</em> I have verified logically) is that
+  it is possible to exclude solutions based on "duplicate" solutions that are not possible with the current state of
+  X's and lines! The highlander condition applies to the base puzzle (the numbers and grid), so just because you might
+  have deduced some lines and X's doesn't prevent ruling out things using solutions that contradict those deductions.
+</p>
+
+<p>
+  TODO: add examples of this, worked out, and better visualizations of the excluded solutions.
 </p>
 
 <h2>Solving with Loops and Regions</h2>
 
+<p>
+  TODO (sorry!)
+</p>
+
+<h2>Pattern Explorer</h2>
+
+<h2>User Interfaces</h2>
+
+<p>
+  TODO (sorry!)
+</p>
+
 <h2>Technical Details</h2>
+
+<p>
+  TODO (sorry!)
+</p>
 
 <p>
   For this part, I'll use some different terminology that is a bit more mathematically-oriented:
