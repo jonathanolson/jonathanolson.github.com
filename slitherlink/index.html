@@ -6,33 +6,35 @@ mathjax: false
 hidecomments: true
 ---
 
-<script async type="module" crossorigin src="./assets/index-BQNm9PE3.js"></script>
+<script async type="module" crossorigin src="./assets/index-CCorLAVc.js"></script>
 <link rel="modulepreload" crossorigin href="./assets/UnivariatePolynomial-1rLpyqfN.js">
 <link rel="modulepreload" crossorigin href="./assets/getCoordinateClusteredMap-Bd_wM-c0.js">
-<link rel="modulepreload" crossorigin href="./assets/PhetioControlledVisibilityProperty-B_Gl7maC.js">
-<link rel="modulepreload" crossorigin href="./assets/TextPushButton-BlKBVbG9.js">
-<link rel="modulepreload" crossorigin href="./assets/BasicPuzzle-BvzExADk.js">
-<link rel="modulepreload" crossorigin href="./assets/Theme-Bm_Rw3jP.js">
-<link rel="modulepreload" crossorigin href="./assets/autoSolver-Bsgd1vdv.js">
-<link rel="modulepreload" crossorigin href="./assets/ShadedSphereNode-DjM1OiL_.js">
+<link rel="modulepreload" crossorigin href="./assets/PhetioControlledVisibilityProperty-CzTgKbkx.js">
+<link rel="modulepreload" crossorigin href="./assets/TextPushButton-Coq2A-51.js">
+<link rel="modulepreload" crossorigin href="./assets/BasicPuzzle-DGsxIJRd.js">
+<link rel="modulepreload" crossorigin href="./assets/Theme-DMXUyWiP.js">
+<link rel="modulepreload" crossorigin href="./assets/autoSolver-D0maTTyV.js">
+<link rel="modulepreload" crossorigin href="./assets/ShadedSphereNode-uuPU3yfJ.js">
 <link rel="modulepreload" crossorigin href="./assets/logic-solver-DfsVuGQ5.js">
 <link rel="modulepreload" crossorigin href="./assets/operations-BMyV0DHx.js">
-<link rel="modulepreload" crossorigin href="./assets/SectorOnlyOneFeature-B6gNVzOk.js">
+<link rel="modulepreload" crossorigin href="./assets/SectorOnlyOneFeature-B1Nn5A2g.js">
 <link rel="modulepreload" crossorigin href="./assets/getPeriodicTilingGenerator-zRiID_iR.js">
-<link rel="modulepreload" crossorigin href="./assets/DisplayEmbedding-CtbnXw0U.js">
+<link rel="modulepreload" crossorigin href="./assets/DisplayEmbedding-DY121lQN.js">
 <link rel="modulepreload" crossorigin href="./assets/compression-CFlaLHJe.js">
-<link rel="modulepreload" crossorigin href="./assets/TPuzzle-CIy5N78U.js">
+<link rel="modulepreload" crossorigin href="./assets/TPuzzle-CoMNzdmp.js">
 <link rel="modulepreload" crossorigin href="./assets/PatternBoardSolver-vRQRWARQ.js">
-<link rel="modulepreload" crossorigin href="./assets/patternBoards-C9AJudHo.js">
-<link rel="modulepreload" crossorigin href="./assets/FeatureSet-DlqxrGj9.js">
-<link rel="modulepreload" crossorigin href="./assets/PatternRule-I4DPfHDP.js">
-<link rel="modulepreload" crossorigin href="./assets/BoardPatternBoard-DaZtb2ww.js">
-<link rel="modulepreload" crossorigin href="./assets/getBestDisplayEmbedding-8gSizLpI.js">
-<link rel="stylesheet" crossorigin href="./assets/index-CXxGl8ne.css">
+<link rel="modulepreload" crossorigin href="./assets/patternBoards-CVo-HFgJ.js">
+<link rel="modulepreload" crossorigin href="./assets/FeatureSet-RmLjQa6B.js">
+<link rel="modulepreload" crossorigin href="./assets/PatternRule-Bgza_EDD.js">
+<link rel="modulepreload" crossorigin href="./assets/BoardPatternBoard-C6phJJV1.js">
+<link rel="modulepreload" crossorigin href="./assets/getBestDisplayEmbedding-CAcmD-wd.js">
+<link rel="modulepreload" crossorigin href="./assets/PatternNode-Dqp5oWZV.js">
+<link rel="modulepreload" crossorigin href="./assets/PatternRuleNode-BIxdgGZq.js">
+<link rel="stylesheet" crossorigin href="./assets/index-DwBAIZLg.css">
 
 <h1>Slitherlink</h1>
 
-I want to create a Slitherlink interface that explores the limits of Slitherlink solving that works on my phone and desktop.
+Building a Slitherlink app that pushes the boundaries of puzzle solving on both phone and desktop.
 
 <div class="row">
   <div class="span6" style="width: 350px !important;">
@@ -124,10 +126,14 @@ I want to create a Slitherlink interface that explores the limits of Slitherlink
 </div>
 
 <p>
-  One common technique is to mark cells where lines cannot go with an "X". This helps you visualize where lines must go.
+  One common technique is to mark cells where lines cannot go with an "X". This helps to visualize where lines must go.
 </p>
 
 <h3>Basic Patterns</h3>
+
+<p>
+  Some of the patterns only apply to puzzles that are larger than the pattern (i.e. they assume that a small loop would not be the solution to the entire puzzle).
+</p>
 
 <h4>Lines and Dots</h4>
 
@@ -184,17 +190,709 @@ I want to create a Slitherlink interface that explores the limits of Slitherlink
   </div>
 </div>
 
+<h4>No Loops</h4>
+
+<div class="examples">
+  <div class="example">
+    <div id="no-trivial-loop" class="example-div"></div>
+    <span class="caption">
+      If a line would create a small loop (that is not the solution to the entire puzzle), it cannot be connected, and can be marked with an X.
+    </span>
+  </div>
+</div>
+
+<div class="examples">
+  <div class="example">
+    <div id="no-loop-a" class="example-div"></div>
+    <span class="caption">
+      Similarly, any "forced" loops can be marked with X's. Here, a line going up would create a square loop.
+    </span>
+  </div>
+</div>
+
+<h4>Basic Numbers</h4>
+
+<p>
+  Lines and X's can sometimes be deduced just from the number of a cell.
+</p>
+
+<div class="examples">
+  <div class="example">
+    <div id="basic-number-zero" class="example-div"></div>
+    <span class="caption">
+      No lines can surround a 0.
+    </span>
+  </div>
+</div>
+
+<div class="examples">
+  <div class="example">
+    <div id="basic-number-three-red" class="example-div"></div>
+    <span class="caption">
+      A single X on a 3 will result in lines.
+    </span>
+  </div>
+</div>
+
+<div class="examples">
+  <div class="example">
+    <div id="basic-number-one-black" class="example-div"></div>
+    <span class="caption">
+      A single line on a 1 will result in X's.
+    </span>
+  </div>
+</div>
+
+<div class="examples">
+  <div class="example">
+    <div id="basic-number-one-red" class="example-div"></div>
+    <span class="caption">
+      Three X's on a 1 will result in a single line.
+    </span>
+  </div>
+</div>
+
+<div class="examples examples-flex">
+  <div class="example">
+    <div id="basic-number-two-black-a" class="example-div"></div>
+  </div>
+  <div class="example">
+    <div id="basic-number-two-black-b" class="example-div"></div>
+  </div>
+  <div class="example">
+    <div id="basic-number-two-red-a" class="example-div"></div>
+  </div>
+  <div class="example">
+    <div id="basic-number-two-red-b" class="example-div"></div>
+  </div>
+</div>
+
+<h4>Corner Cases</h4>
+
+<div class="examples">
+  <div class="example">
+    <div id="corner-one" class="example-div"></div>
+    <span class="caption">
+      A 1 in the corner will get two X's (remember, corners are like X's!)
+    </span>
+  </div>
+</div>
+
+<div class="examples">
+  <div class="example">
+    <div id="corner-three" class="example-div"></div>
+    <span class="caption">
+      A 3 in the corner will get two lines (remember, corners are like X's!)
+    </span>
+  </div>
+</div>
+
+<div class="examples">
+  <div class="example">
+    <div id="corner-two-general" class="example-div"></div>
+    <span class="caption">
+      This is the general case for a 2 with corner-like X's. If it is in a true corner, you will get two lines.
+    </span>
+  </div>
+</div>
+
+<h4>Edge Cases</h4>
+
+<div class="examples examples-flex">
+  <div class="example">
+    <div id="edge-three-one" class="example-div"></div>
+  </div>
+  <div class="example">
+    <div id="edge-one-one" class="example-div"></div>
+  </div>
+</div>
+
+<h3>Annotated Example</h3>
+
+<p>
+  Given the patterns above, let's solve a simple puzzle.
+</p>
 
 
+<div class="examples">
+  <div class="example">
+    <div id="annotated-simple-0" class="example-div"></div>
+    <span class="caption">
+      Our starting puzzle.
+    </span>
+  </div>
+</div>
+
+<div class="examples">
+  <div class="example">
+    <div id="annotated-simple-1" class="example-div"></div>
+    <span class="caption">
+      We can mark X's around all of the 0's in the puzzle.
+    </span>
+  </div>
+</div>
+
+<div class="examples">
+  <div class="example">
+    <div id="annotated-simple-2" class="example-div"></div>
+    <span class="caption">
+      There is a 3 with an X, so we can fill in lines.
+    </span>
+  </div>
+</div>
+
+<div class="examples">
+  <div class="example">
+    <div id="annotated-simple-3" class="example-div"></div>
+    <span class="caption">
+      There are two dots that have two lines each; other potential lines get X'ed out.
+    </span>
+  </div>
+</div>
+
+<div class="examples">
+  <div class="example">
+    <div id="annotated-simple-4" class="example-div"></div>
+    <span class="caption">
+      This also applies for the corner dots (but it may be harder to see).
+    </span>
+  </div>
+</div>
+
+<div class="examples">
+  <div class="example">
+    <div id="annotated-simple-5" class="example-div"></div>
+    <span class="caption">
+      We have two vertices where a single line meets two X's. They both must take the only remaining path.
+    </span>
+  </div>
+</div>
+
+<div class="examples">
+  <div class="example">
+    <div id="annotated-simple-6" class="example-div"></div>
+    <span class="caption">
+      Similarly, this happens for the edge dots (the implicit X's at the corner apply).
+    </span>
+  </div>
+</div>
+
+<div class="examples">
+  <div class="example">
+    <div id="annotated-simple-7" class="example-div"></div>
+    <span class="caption">
+      Let's apply a more complicated pattern: the 3 has a dot that, while not in the corner, matches the corner-like
+      pattern. It gets two lines.
+    </span>
+  </div>
+</div>
+
+<div class="examples">
+  <div class="example">
+    <div id="annotated-simple-7a" class="example-div"></div>
+    <span class="caption">
+      We created a joint-like two lines on a dot, so we mark in the remaining X.
+    </span>
+  </div>
+</div>
+
+<div class="examples">
+  <div class="example">
+    <div id="annotated-simple-7b" class="example-div"></div>
+    <span class="caption">
+      A 3 with an X can have its remaining lines filled in.
+    </span>
+  </div>
+</div>
+
+<div class="examples">
+  <div class="example">
+    <div id="annotated-simple-8" class="example-div"></div>
+    <span class="caption">
+      We can use the "line on a 1" and "X's if there are two lines on a dot" rules to fill in some additional X's.
+    </span>
+  </div>
+</div>
+
+<div class="examples">
+  <div class="example">
+    <div id="annotated-simple-9" class="example-div"></div>
+    <span class="caption">
+      We can repeatedly add lines where there are no other options (either edges, corners, or X's on all other options).
+    </span>
+  </div>
+</div>
+
+<div class="examples">
+  <div class="example">
+    <div id="annotated-simple-10" class="example-div"></div>
+    <span class="caption">
+      A 1 with a line will create X's.
+    </span>
+  </div>
+</div>
+
+<div class="examples">
+  <div class="example">
+    <div id="annotated-simple-11" class="example-div"></div>
+    <span class="caption">
+      We finish the puzzle with forced lines!
+    </span>
+  </div>
+</div>
 
 
-<h2>Solving with Edges</h2>
+<h3>Common Patterns</h3>
 
-<h2>Solving with Colors</h2>
+<div class="examples examples-flex">
+  <div class="example">
+    <div id="three-three-diagonal" class="example-div"></div>
+  </div>
+  <div class="example">
+    <div id="three-three-adjacent" class="example-div"></div>
+  </div>
+  <div class="example">
+    <div id="three-incident-line" class="example-div"></div>
+  </div>
+  <div class="example">
+    <div id="two-spiked-red" class="example-div"></div>
+  </div>
+  <div class="example">
+    <div id="two-spiked-black" class="example-div"></div>
+  </div>
+  <div class="example">
+    <div id="three-two-red" class="example-div"></div>
+  </div>
+  <div class="example">
+    <div id="two-two-red" class="example-div"></div>
+  </div>
+  <div class="example">
+    <div id="one-incident" class="example-div"></div>
+  </div>
+  <div class="example">
+    <div id="one-anti-incident-a" class="example-div"></div>
+  </div>
+  <div class="example">
+    <div id="one-anti-incident-b" class="example-div"></div>
+  </div>
+</div>
 
-<h2>Solving with Sectors and Parity</h2>
 
-<h2>Solving with Highlander</h2>
+<h2>Sectors and Parity</h2>
+
+<h3>Only One</h3>
+
+<p>
+  It is useful to mark sectors (adjacent pairs of potential lines) with a few properties. The most powerful marking
+  says that "exactly one of these will be a line, and the other will be an X". We denote this below by drawing a
+  red curve between the two potential lines.
+</p>
+
+<div class="examples">
+  <div class="example">
+    <div id="only-one-across-two" class="example-div"></div>
+    <span class="caption">
+      If a pair of edges of a 2 will have exactly one line, then the <em>other</em> pair will <em>also</em> have exactly one line.
+    </span>
+  </div>
+</div>
+
+<p>
+  On square grids, this property also applies across a dot to the opposite sector:
+</p>
+
+<div class="examples">
+  <div class="example">
+    <div id="only-one-crossing" class="example-div"></div>
+    <span class="caption">
+      If a pair of edges of a 2 will have exactly one line, then the <em>other</em> pair will <em>also</em> have exactly one line.
+    </span>
+  </div>
+</div>
+
+<p>
+  Thus the only-one sector property will propagate across a chain of diagonally-connected 2s (in a square grid)!
+</p>
+
+<p>
+  This type of parity arises naturally in many common situations:
+</p>
+
+<div class="examples examples-flex">
+  <div class="example">
+    <div id="one-incident-sector" class="example-div"></div>
+  </div>
+  <div class="example">
+    <div id="two-incident-sector" class="example-div"></div>
+  </div>
+  <div class="example">
+    <div id="three-incident-sector" class="example-div"></div>
+  </div>
+  <div class="example">
+    <div id="simple-incident-sector" class="example-div"></div>
+  </div>
+</div>
+
+<p>
+  It is particularly powerful, not just because it can propagate across 2s, but many of the reverse cases directly
+  deduce lines or X's:
+</p>
+
+<div class="examples examples-flex">
+  <div class="example">
+    <div id="one-incident-reverse-sector" class="example-div"></div>
+  </div>
+  <div class="example">
+    <div id="two-incident-reverse-sector-a" class="example-div"></div>
+  </div>
+  <div class="example">
+    <div id="two-incident-reverse-sector-b" class="example-div"></div>
+  </div>
+  <div class="example">
+    <div id="three-incident-reverse-sector" class="example-div"></div>
+  </div>
+  <div class="example">
+    <div id="simple-incident-reverse-sector-a" class="example-div"></div>
+  </div>
+  <div class="example">
+    <div id="simple-incident-reverse-sector-b" class="example-div"></div>
+  </div>
+</div>
+
+<p>
+  Whenever there is a line or an X in a sector with "only one" line, you can immediately mark the opposite!
+</p>
+
+<p>
+  The only-one sector can solve the following example patterns, but much more:
+</p>
+
+
+<div class="examples examples-flex">
+  <div class="example">
+    <div id="only-one-example-a" class="example-div"></div>
+  </div>
+  <div class="example">
+    <div id="only-one-example-b" class="example-div"></div>
+  </div>
+  <div class="example">
+    <div id="only-one-example-c" class="example-div"></div>
+  </div>
+</div>
+
+<h3>Not One</h3>
+
+<p>
+  A dual to the "only one" sector is the "not one" sector. This is a sector where either both are lines or both are X's.
+  We will mark this with two blue curves between the two potential lines.
+</p>
+
+<div class="examples">
+  <div class="example">
+    <div id="two-spike-sector" class="example-div"></div>
+    <span class="caption">
+      This comes up most naturally with 2-in-a-corner pattern. Note that this also includes only-one sectors, and
+      can be incredibly constraining. In this case, the upper-left of the 2 ALSO has the not-one sector property, but
+      isn't marked visually by the system due to the triviality (only two places for lines).
+    </span>
+  </div>
+</div>
+
+<div class="examples">
+  <div class="example">
+    <div id="not-one-propagation" class="example-div"></div>
+    <span class="caption">
+      Not-one sectors propagate across dots in square grids.
+    </span>
+  </div>
+</div>
+
+<div class="examples">
+  <div class="example">
+    <div id="two-spike-from-sector" class="example-div"></div>
+    <span class="caption">
+      Not-one sectors also create the 2-in-a-corner pattern.
+    </span>
+  </div>
+</div>
+
+<p>
+  Using the above patterns, it follows that any diagonal chain of 2s will propagate the not-one sector property across
+  the entire chain!
+</p>
+
+<h3>Not Two and Not Zero</h3>
+
+<p>
+  Similarly, we can mark sectors when we can rule out two lines or zero lines. We will mark not-two with a single dashed
+  orange curve, and not-zero with a double dashed green curve.
+</p>
+
+<div class="examples">
+  <div class="example">
+    <div id="one-not-two" class="example-div"></div>
+    <span class="caption">
+      Not-two sectors naturally form around a 1.
+    </span>
+  </div>
+</div>
+
+<div class="examples">
+  <div class="example">
+    <div id="three-not-zero" class="example-div"></div>
+    <span class="caption">
+      Not-zero sectors naturally form around a 3.
+    </span>
+  </div>
+</div>
+
+<div class="examples">
+  <div class="example">
+    <div id="not-zero-not-two-propagation" class="example-div"></div>
+    <span class="caption">
+      If a sector is a not-zero, then any opposite sector is a not-two.
+    </span>
+  </div>
+</div>
+
+<h3>Sector Combinations</h3>
+
+<p>
+  When rules overlap and you would mark multiple sectors on a single pair of potential lines, you can combine them into
+  more precise states:
+</p>
+
+<ul>
+  <li>
+    Not-zero (green) and not-one (blue) => both are lines!
+  </li>
+  <li>
+    Not-two (orange) and not-one (blue) => both are X's!
+  </li>
+  <li>
+    Not-zero (green) and not-two (orange) => only-one (red)
+  </li>
+</ul>
+
+<div class="examples">
+  <div class="example">
+    <div id="second-diagonal-three" class="example-div"></div>
+    <span class="caption">
+      This rule can be directly derived from the above sectors rules directly. Each 3 creates not-zero sectors,
+      and the not-two sectors propagate across the diagonal. Since each pair of potential lines has not-zero and not-two,
+      it is equivalent to only-one. Previous sectors rules show what only-one with a 3 combines into.
+    </span>
+  </div>
+</div>
+
+<h3>Common Sector Patterns</h3>
+
+<div class="examples examples-flex">
+  <div class="example">
+    <div id="line-not-two" class="example-div"></div>
+  </div>
+  <div class="example">
+    <div id="adjacent-not-one" class="example-div"></div>
+  </div>
+  <div class="example">
+    <div id="not-zero-three-edge" class="example-div"></div>
+  </div>
+  <div class="example">
+    <div id="not-two-double" class="example-div"></div>
+  </div>
+  <div class="example">
+    <div id="adjacent-propagation" class="example-div"></div>
+  </div>
+  <div class="example">
+    <div id="two-partial-sector-a" class="example-div"></div>
+  </div>
+  <div class="example">
+    <div id="two-partial-sector-b" class="example-div"></div>
+  </div>
+  <div class="example">
+    <div id="no-sector-loop" class="example-div"></div>
+  </div>
+  <div class="example">
+    <div id="two-sector-prop-a" class="example-div"></div>
+  </div>
+  <div class="example">
+    <div id="two-sector-prop-b" class="example-div"></div>
+  </div>
+</div>
+
+<h3>Parity</h3>
+
+<p>
+  The following rules are very powerful when combined. They represent the concept of <a href="https://en.wikipedia.org/wiki/Parity_(mathematics)">parity</a>,
+  in general the concept of even/odd.
+</p>
+
+<p>
+  Most notably, if all but one sector of a square are marked with only-one or not-one, you can deduce the last sector!
+  If you look at any closed region in the puzzle (e.g. a square, but it can be arbitrary), the number of times the
+  final loop will cross it <strong>will be even</strong>. Every only-one sector is a "crossing" of our square, and
+  every not-one sector is a "non-crossing".
+</p>
+
+<p>
+  For example, in a square:
+</p>
+
+<ul>
+  <li>
+    Three only-one sectors => four only-one sectors (last corner is only-one)
+  </li>
+  <li>
+    Three not-one sectors => four not-one sectors (last corner is not-one)
+  </li>
+  <li>
+    Two not-one sectors and one only-one sector => two of each (last corner is only-one)
+  </li>
+</ul>
+
+<p>
+  For a concrete case of parity in action, see <a href="https://www.reddit.com/r/slitherlink/comments/18n6w82/comment/ke9rlvn/">this reddit thread</a>.
+</p>
+
+<div class="examples examples-flex">
+  <div class="example">
+    <div id="sector-parity-a" class="example-div"></div>
+  </div>
+  <div class="example">
+    <div id="sector-parity-b" class="example-div"></div>
+  </div>
+  <div class="example">
+    <div id="sector-parity-c" class="example-div"></div>
+  </div>
+  <div class="example">
+    <div id="sector-parity-d" class="example-div"></div>
+  </div>
+  <div class="example">
+    <div id="sector-parity-e" class="example-div"></div>
+  </div>
+</div>
+
+<h2>Alternative Representations</h2>
+
+<p>
+  The classic form of dots and X's can be harder to use in a few ways:
+</p>
+
+<ul>
+  <li>
+    The implicit "lines between dots" can be hard to visualize multiple pathways (particularly for coloring/Jordan curve
+    solving).
+  </li>
+  <li>
+    The implicit "lines between dots" doesn't work as well for non-square grids (harder to visualize the potential shapes).
+  </li>
+  <li>
+    The X's can be awkward on non-square grids (they look weird either rotated or non-rotated).
+  </li>
+  <li>
+    Sectors are not as clear with the implicit lines.
+  </li>
+</ul>
+
+<p>
+  For example, the same puzzle is represented below with two methods. The left "arm" of the puzzle (with the 3)
+  needs to connect back to the rest with two line paths. There happens to be a "cut" (marked in red) where there are
+  only two places for lines to pass through (at each endpoint of the red line). Making the possible paths explicit
+  helps identify this type of case.
+</p>
+
+<div class="examples examples-flex">
+  <div class="example">
+    <div id="unclear-classic" class="example-div"></div>
+  </div>
+  <div class="example">
+    <div id="unclear-colors" class="example-div"></div>
+  </div>
+</div>
+
+In these other representations, "lines" are drawn with a <em>thick, bold</em> style, "possible lines" are drawn with
+a <em>thin</em> style, and X's are represented simply by the absence of a line.
+
+<div class="examples">
+  <div class="example">
+    <div id="unclear-visible-red" class="example-div"></div>
+    <span class="caption">
+      It is also possible to mark the location of X's with other styles.
+    </span>
+  </div>
+</div>
+
+<h2>Alternative Tilings</h2>
+
+<p>
+  Any <a href="https://en.wikipedia.org/wiki/Planar_graphs">planar graph</a> or tiling can be used to make a puzzle.
+</p>
+
+<div class="examples examples-flex">
+  <div class="example">
+    <div id="rhombille-puzzle" class="example-div"></div>
+  </div>
+  <div class="example">
+    <div id="hexagonal-puzzle" class="example-div"></div>
+  </div>
+  <div class="example">
+    <div id="cairo-puzzle" class="example-div"></div>
+  </div>
+  <div class="example">
+    <div id="floret-puzzle" class="example-div"></div>
+  </div>
+  <div class="example">
+    <div id="rhombitrihexagonal-puzzle" class="example-div"></div>
+  </div>
+</div>
+
+<p>
+  Each of which has different rules:
+</p>
+
+<div class="examples examples-flex">
+  <div class="example">
+    <div id="hex-five-five" class="example-div"></div>
+  </div>
+  <div class="example">
+    <div id="hex-five-four-five" class="example-div"></div>
+  </div>
+</div>
+
+<p>
+  However, it is possible to create/compute "general" rules that work across tilings:
+</p>
+
+<div class="examples examples-flex">
+  <div class="example">
+    <div id="general-rule-square" class="example-div"></div>
+  </div>
+  <div class="example">
+    <div id="general-rule-rhombille" class="example-div"></div>
+  </div>
+  <div class="example">
+    <div id="general-rule-snub-square" class="example-div"></div>
+  </div>
+  <div class="example">
+    <div id="general-rule-deltoidal-trihexagonal" class="example-div"></div>
+  </div>
+  <div class="example">
+    <div id="general-rule-rhombitrihexagonal" class="example-div"></div>
+  </div>
+</div>
+
+<div class="examples">
+  <div class="example">
+    <div id="general-rule-generic" class="example-div"></div>
+    <span class="caption">
+      All of the above rules are represented by this form (will be described later in the technical details, but red circles denote "all other unspecified potential lines get X'ed").
+    </span>
+  </div>
+</div>
+
+<h2>Coloring</h2>
+
+<h2>Highlander</h2>
 
 <p>
   Since valid puzzles mut have a single unique solution, <a href="https://kwontomloop.com/forum.php?a=topic&topic_id=66&pg=2">highlander</a> rules ("there can be only one") may apply.
