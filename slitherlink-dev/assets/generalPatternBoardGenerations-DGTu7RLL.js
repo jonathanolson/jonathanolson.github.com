@@ -1,0 +1,1 @@
+import{_ as n,s as o,an as s,al as t,ap as d,ao as i,aq as l,ar as g,aT as G,aU as B,aV as m,aW as u,aX as h,aY as p}from"./patternBoards-DsO5TEFU.js";const r=[o,s,t,d,i,l,g,G,B,m,u,h,p],x=Math.min(...r.map(a=>a.length)),T=n.range(0,x).map(a=>n.uniq(r.flatMap(e=>e[a])));export{T as g};
