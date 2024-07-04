@@ -1,0 +1,108 @@
+---
+layout: default
+title: >-
+  Tesserace
+subtitle: >-
+  WebGL Path Tracing
+permalink: /projects/tesserace.html
+mathjax: true
+categories: project
+header: tesserace
+lead: >-
+  Experimenting with WebGL Path Tracing
+importance: 20
+thumbnail: /img/tesserace-047-background-full.jpg
+description: >-
+  WebGL-based experiment with fairly realistic light transport (dielectrics, metals). Includes signed distance field (SDF) shapes and procedural textures.
+---
+<link href="/css/tesserace.css" rel="stylesheet">
+
+<main>
+  <p>
+    I wanted to test out WebGL's capabilities for path tracing after viewing <a href="https://madebyevan.com/webgl-path-tracing/">Evan Wallace's path tracer</a>, but with more features and corrected realism/gamma.
+  </p>
+  <p>
+    Rays are fired from the camera out into the scene, bounce around according to physical models, and record when they hit a light source.
+    Whenever anything changes, the scene has to be re-traced (it starts out noisy, but converges to the correct image).
+  </p>
+  <p style="text-align: center;">
+    Try out <a href="https://jonathanolson.net/tesserace/tests/3d.html">the demo</a>!
+  </p>
+  <figure>
+    <a href="https://jonathanolson.net/tesserace/tests/3d.html"><img src="/img/tesserace-047-background-full.jpg" alt="View of spheres of different materials, over a wooden floor" class="small-figure-image"></a>
+  </figure>
+
+  <p>
+    It includes full fresnel simulation of dielectrics, depth of field tone mapping, and caustics, but not spectral or polarized light.
+    Spectral is generally supported, but the environment maps don't have spectral data.
+  </p>
+
+  <figure>
+    <img src="/img/tesserace-029-caustics-tone-mapping.jpg" alt="Caustics and tone mapping" class="small-figure-image">
+    <figcaption>
+      Caustics and tone mapping
+    </figcaption>
+  </figure>
+
+  <figure>
+    <img src="/img/tesserace-019-bump-texture-mapping.jpg" alt="Bump mapping and procedural BRDFs" class="small-figure-image">
+    <figcaption>
+      Bump mapping and procedural BRDFs
+    </figcaption>
+  </figure>
+
+  <h2>Projections</h2>
+  <p>
+    It is capable of different projections:
+  </p>
+
+  <figure>
+    <img src="/img/tesserace-006-stereographic.jpg" alt="Stereographic projection" class="small-figure-image">
+    <figcaption>
+      Stereographic projection
+    </figcaption>
+  </figure>
+
+  <figure>
+    <img src="/img/tesserace-010-orthographic.jpg" alt="Orthographic projection" class="small-figure-image">
+    <figcaption>
+      Orthographic projection
+    </figcaption>
+  </figure>
+
+  <h2>Signed Distance Fields (SDFs)</h2>
+  <p>
+    I also experimented with signed distance fields (SDFs) based on <a href="https://iquilezles.org/articles/distfunctions/">Inigo Quilez's work</a>.
+    It included modeling an IKEA Pokal glass as a single formula.
+  </p>
+  <figure>
+    <img src="/img/tesserace-036-glass-sdf.jpg" alt="Cross section view of the glass SDF" class="small-figure-image">
+    <figcaption>
+      Cross section view of the glass SDF
+    </figcaption>
+  </figure>
+  <figure>
+    <img src="/img/tesserace-037-glass-black.jpg" alt="Opaque black view of the glass" class="small-figure-image">
+    <figcaption>
+      Opaque black view of the glass
+    </figcaption>
+  </figure>
+  <figure>
+    <img src="/img/tesserace-041-glass.jpg" alt="Normal rendering of the glass" class="small-figure-image">
+    <figcaption>
+      Normal rendering of the glass
+    </figcaption>
+  </figure>
+
+  <h2>Procedural Texturing</h2>
+  <p>
+    I also experimented with using the projection of a dodecahedron to bump-map/texture a soccer ball.
+  </p>
+
+  <figure>
+    <img src="/img/tesserace-soccer-ball.jpg" alt="Dodecahedron-based procedural bump mapping and texturing of a sphere to look like a soccer ball" class="small-figure-image">
+    <figcaption>
+      Dodecahedron-based procedural bump mapping and texturing of a sphere to look like a soccer ball
+    </figcaption>
+  </figure>
+</main>

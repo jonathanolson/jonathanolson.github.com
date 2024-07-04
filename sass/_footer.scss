@@ -1,0 +1,47 @@
+.footer {
+  background: linear-gradient(#444, #222);
+
+  display: flex;
+  flex-direction: column;
+  margin-top: 2em;
+
+  .footer-text {
+    margin: 1rem auto 0.3em;
+    text-align: center;
+
+    .found-a-problem {
+      font-size: 0.8rem;
+      margin-top: 1em;
+      color: #bbb;
+    }
+  }
+
+  .footer-links {
+    display: grid;
+    grid-template-columns: max-content max-content;
+    gap: 0.2em 1em;
+
+    margin: 0 auto 1rem;
+    font-size: 0.7rem;
+  }
+
+  a {
+    color: #aaa;
+    text-decoration: none;
+
+    &:hover {
+      color: #fff !important;
+    }
+
+    &.home {
+      font-weight: 100;
+      font-size: 1rem;
+    }
+  }
+
+  div {
+    color: #777;
+    //font-size: 14px;
+    weight: 700;
+  }
+}

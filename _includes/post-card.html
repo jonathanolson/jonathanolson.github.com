@@ -1,0 +1,18 @@
+<a class="post-card" href="{% if include.directurl %}{{include.directurl}}{%else%}{{ include.url | replace: "playceholder", "play" | replace: "/index.html", "/" | replace: ".html", "" }}{%endif%}">
+  <div class="post-card-image-container">
+    {% if include.thumbnail %}
+    <img class="post-card-image" src="{{ include.thumbnail }}" alt="{{ include.title }}">
+    {% else %}
+    <div class="post-card-image-placeholder"></div>
+    {% endif %}
+  </div>
+  <div class="post-card-words">
+    <div class="post-card-title">{{ include.title }}</div>
+    {% if include.subtitle %}
+    <div class="post-card-subtitle">{{ include.subtitle }}</div>
+    {% endif %}
+    <div class="post-card-description">
+      {{ include.description }}
+    </div>
+  </div>
+</a>

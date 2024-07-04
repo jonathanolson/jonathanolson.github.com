@@ -1,1 +1,0 @@
-import{_ as n,s as o,ae as s,ac as t,ag as d,af as i,ah as l,ai as g,aM as G,aN as B,aO as m,aP as h,aQ as u,aR as x}from"./patternBoards-DzVBPT7g.js";const r=[o,s,t,d,i,l,g,G,B,m,h,u,x],P=Math.max(...r.map(a=>a.length)),p=n.range(0,P).map(a=>n.uniq(r.flatMap(e=>e[a]??[])));export{p as g};

@@ -1,0 +1,17 @@
+---
+title: Articles
+layout: default
+categories: article
+mathjax: true
+header: articles
+---
+<link href="/css/articles.css" rel="stylesheet">
+<ul class="post-card-grid">
+  {% for post in site.posts %}
+  {% if post.categories contains 'article' %}
+  <li>
+    {% include post-card.html url=post.url title=post.title thumbnail=post.thumbnail description=post.description subtitle=post.subtitle directurl=post.directurl %}
+  </li>
+  {% endif %}
+  {% endfor %}
+</ul>

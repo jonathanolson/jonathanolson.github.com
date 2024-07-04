@@ -1,0 +1,17 @@
+---
+title: Projects
+layout: default
+categories: project
+mathjax: true
+header: projects
+---
+<link href="/css/projects.css" rel="stylesheet">
+<ul class="post-card-grid">
+  {% for post in site.posts %}
+  {% if post.categories contains 'project' %}
+  <li>
+    {% include post-card.html url=post.url title=post.title thumbnail=post.thumbnail description=post.description subtitle=post.subtitle directurl=post.directurl %}
+  </li>
+  {% endif %}
+  {% endfor %}
+</ul>

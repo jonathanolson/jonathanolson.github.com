@@ -1,2 +1,27 @@
+title: Jonathan Olson
+tagline: Innovating at the Intersection of Graphics and Mathematics
+description: >- # this means to ignore newlines until "baseurl:"
+  As a passionate software engineer, I develop free open-source educational tools for PhET Interactive Simulations, lead 
+  the development of their rendering engine, and pursue diverse personal projects.
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "https://jonathanolson.net" # the base hostname & protocol for your site, e.g. http://example.com
+author:
+  name: Jonathan Olson
+  twitter: combinatoric
+  url: https://jonathanolson.net
+email: jonathan.olson@colorado.edu
+twitter:
+  username: combinatoric
+  card: summary
+
 markdown: kramdown
-highlighter: true
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+#  - jekyll-sitemap
+
+sass:
+  sass_dir: sass
+
+exclude:
+  - .gitignore

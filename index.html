@@ -2,151 +2,58 @@
 layout: default
 categories: home
 mathjax: true
+codemirror: true
 ---
+<link href="/css/home.css" rel="stylesheet">
 
-<div style="display: table; width: 100%;">
-	<div style="display: table-cell; text-align: center; vertical-align: middle;">
-		<div style="display: inline-block;">
-			<h1 class="index-section">Personal Projects</h1>
-
-			<div>
-				<div class="index-thumbnail"><a href="/experiments/optimal-wordle-solutions"><img src="/img/wordle-solver.png" alt="Screenshot of the Wordle solver showing a solution"></a></div>
-				<div class="index-description">
-					<h2 class="index-header"><a href="/experiments/optimal-wordle-solutions">Optimal Wordle Solutions</a></h2>
-
-					<p class="index-paragraph">
-						[2022, JS] Exploring decision trees and optimal strategies for the game <a href="https://www.powerlanguage.co.uk/wordle/">Wordle</a>. <a href="https://jonathanolson.net/wordle-solver/">Demo of efficient strategies</a>.
-					</p>
-				</div>
-			</div>
-			<div class="index-between"></div>
-
-			<div>
-				<div class="index-thumbnail"><a href="/tesserace/tests/3d.html"><img src="/img/tesserace-3d-distance-field-glass.png" alt="3D rendering of an empty water glass on a wood floor"></a></div>
-				<div class="index-description">
-					<h2 class="index-header"><a href="/tesserace/tests/3d.html">Tesserace: 3D Path Tracing Test</a></h2>
-
-					<p class="index-paragraph">
-						[2014, JS] Works in browsers with WebGL enabled. Uses GLSL mainly for the path tracing, and has fairly realistic light transport (not currently spectral or polarized).
-					</p>
-				</div>
-			</div>
-			<div class="index-between"></div>
-
-			<div>
-				<div class="index-thumbnail"><a href="https://github.com/jonathanolson/sudog"><img src="/img/sudog-gui.png" alt="Screenshot of Sudog showing a sudoku pattern"></a></div>
-				<div class="index-description">
-					<h2 class="index-header"><a href="https://github.com/jonathanolson/sudog">Sudog: Sudoku solving assistant</a></h2>
-
-					<p class="index-paragraph">
-						[2008, C++, Linux] Highlights common human-understandable patterns to eliminate candidates, using strategies up to
-						swordfish/y-wing/coloring. Includes a command-line solver that outputs postscript or SVG step-by-step solution
-						guides, and includes a GTK+/Cairo user interface for interactive solving.
-					</p>
-				</div>
-			</div>
-			<div class="index-between"></div>
-
-			<h1 class="index-section">Experiments</h1>
-
-			<div>
-				<div class="index-thumbnail"><a href="/experiments/browser-specific-content-using-canvas-quirks"><canvas id="artCanvas" width="256" height="256"></canvas></a></div>
-				<div class="index-description">
-					<h2 class="index-header"><a href="/experiments/browser-specific-content-using-canvas-quirks">Browser-specific content using Canvas quirks</a></h2>
-
-					<p class="index-paragraph">
-						Using edge-cases in HTML5 Canvas implementations, it's possible to create images that are different on most
-						browsers without querying any browser information (via browser detection or reading Canvas pixels).
-					</p>
-					<p class="index-paragraph">
-						Not only does this allow creating unique images (try viewing the image to the left on other browsers), but
-						it's possible to craft the ability to decide what to show for each browser.
-					</p>
-
-					<p style="text-align: right;">
-						<a href="/experiments/browser-specific-content-using-canvas-quirks">see demo...</a>
-					</p>
-				</div>
-			</div>
-			<div class="index-between"></div>
-
-			<h1 class="index-section">Problems</h1>
-
-			<div>
-				<div class="index-thumbnail"><a href="/problems/flattening-convolution"><img src="/img/flattening-convolution.png" alt="Black-and-white image that averages to exactly in-between for every circle of the radius shown"></a></div>
-				<div class="index-description">
-					<h2 class="index-header"><a href="/problems/flattening-convolution">Flattening Convolution</a></h2>
-
-					<p class="index-paragraph">
-						Imagine someone tells you of a magical landscape where everywhere you go, the average elevation within 1km is always the same. Is there any way this landscape can have hills?
-					</p>
-
-					<p style="text-align: right;">
-						<a href="/problems/flattening-convolution">read more...</a>
-					</p>
-				</div>
-			</div>
-			<div class="index-between"></div>
-
-			<div>
-				<div class="index-thumbnail"><a href="/problems/additive-subset-picking"><div class="index-thumbnail-placeholder"></div></a></div>
-				<div class="index-description">
-					<h2 class="index-header"><a href="/problems/additive-subset-picking">Additive Subset Picking</a></h2>
-
-					<p class="index-paragraph">
-						How can we choose a subset of $\{1,\ldots,n\}$ with as many elements as possible such that the sum of any two elements is distinct?
-					</p>
-
-					<p style="text-align: right;">
-						<a href="/problems/additive-subset-picking">read more...</a>
-					</p>
-				</div>
-			</div>
-			<div class="index-between"></div>
-
-			<h1 class="index-section">Notes</h1>
-
-			<div>
-				<div class="index-thumbnail"><a href="/notes/canvas-browser-specific-quirks"><img src="/img/canvas-diff.png" alt="Four quirks that can differentiate between popular browsers"></a></div>
-				<div class="index-description">
-					<h2 class="index-header"><a href="/notes/canvas-browser-specific-quirks">Canvas Browser-Specific Quirks</a></h2>
-
-					<p class="index-paragraph">
-						Currently, there are a number of HTML5 Canvas edge cases that display differently on different browsers.
-						This is a list of all quirks that I've come across so far in
-						<a href="http://phetsims.github.io/scenery/">Scenery</a> development.
-					</p>
-
-					<p style="text-align: right;">
-						<a href="/notes/canvas-browser-specific-quirks">read more...</a>
-					</p>
-				</div>
-			</div>
-			<div class="index-between"></div>
+<div class="home-banner">
+	<div class="home-banner-contents">
+		<div class="home-hi">Hi, I'm</div>
+		<h1>Jonathan Olson</h1>
+		<div class="home-tagline">Innovating at the Intersection of Graphics and Mathematics</div>
+		<div class="home-description">
+			I develop free open-source educational tools for <a href="https://phet.colorado.edu/">PhET Interactive Simulations</a>, lead the development of their rendering engine, and pursue diverse personal projects.
 		</div>
 
-		<div style="clear: both;"></div>
-
-<!-- 		<h1>Coming Soon</h1>
-		<ul>
-			<li>Topswops</li>
-			<li>Parking choices to avoid being hit while away</li>
-			<li>Dart cloud distributions</li>
-			<li>Relation and proposition discovery</li>
-			<li>Absolute dithering</li>
-			<li>Actual about/contact pages</li>
-			<li>Improved page color scheme to match header</li>
-			<li>Improve code syntax highlighting colors</li>
-			<li>Maybe some hexagons?</li>
-			<li>Generalizations of <a href="http://www.reddit.com/r/math/comments/16243n/quick_math_puzzle_for_2013/">This 2013 problem</a></li>
-		</ul> -->
+		<div class="social-icons">
+			<a href="https://github.com/jonathanolson"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-github" viewBox="0 0 16 16">
+				<path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8"/>
+			</svg></a>
+			<a href="https://mastodon.social/@muyyatin"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-mastodon" viewBox="0 0 16 16">
+				<path d="M11.19 12.195c2.016-.24 3.77-1.475 3.99-2.603.348-1.778.32-4.339.32-4.339 0-3.47-2.286-4.488-2.286-4.488C12.062.238 10.083.017 8.027 0h-.05C5.92.017 3.942.238 2.79.765c0 0-2.285 1.017-2.285 4.488l-.002.662c-.004.64-.007 1.35.011 2.091.083 3.394.626 6.74 3.78 7.57 1.454.383 2.703.463 3.709.408 1.823-.1 2.847-.647 2.847-.647l-.06-1.317s-1.303.41-2.767.36c-1.45-.05-2.98-.156-3.215-1.928a4 4 0 0 1-.033-.496s1.424.346 3.228.428c1.103.05 2.137-.064 3.188-.189zm1.613-2.47H11.13v-4.08c0-.859-.364-1.295-1.091-1.295-.804 0-1.207.517-1.207 1.541v2.233H7.168V5.89c0-1.024-.403-1.541-1.207-1.541-.727 0-1.091.436-1.091 1.296v4.079H3.197V5.522q0-1.288.66-2.046c.456-.505 1.052-.764 1.793-.764.856 0 1.504.328 1.933.983L8 4.39l.417-.695c.429-.655 1.077-.983 1.934-.983.74 0 1.336.259 1.791.764q.662.757.661 2.046z"/>
+			</svg></a>
+			<script>document.write('<a href="mailto:jonathan.olson' + '@colorado.edu"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope-at-fill" viewBox="0 0 16 16"><path d="M2 2A2 2 0 0 0 .05 3.555L8 8.414l7.95-4.859A2 2 0 0 0 14 2zm-2 9.8V4.698l5.803 3.546zm6.761-2.97-6.57 4.026A2 2 0 0 0 2 14h6.256A4.5 4.5 0 0 1 8 12.5a4.49 4.49 0 0 1 1.606-3.446l-.367-.225L8 9.586zM16 9.671V4.697l-5.803 3.546.338.208A4.5 4.5 0 0 1 12.5 8c1.414 0 2.675.652 3.5 1.671"/><path d="M15.834 12.244c0 1.168-.577 2.025-1.587 2.025-.503 0-1.002-.228-1.12-.648h-.043c-.118.416-.543.643-1.015.643-.77 0-1.259-.542-1.259-1.434v-.529c0-.844.481-1.4 1.26-1.4.585 0 .87.333.953.63h.03v-.568h.905v2.19c0 .272.18.42.411.42.315 0 .639-.415.639-1.39v-.118c0-1.277-.95-2.326-2.484-2.326h-.04c-1.582 0-2.64 1.067-2.64 2.724v.157c0 1.867 1.237 2.654 2.57 2.654h.045c.507 0 .935-.07 1.18-.18v.731c-.219.1-.643.175-1.237.175h-.044C10.438 16 9 14.82 9 12.646v-.214C9 10.36 10.421 9 12.485 9h.035c2.12 0 3.314 1.43 3.314 3.034zm-4.04.21v.227c0 .586.227.8.581.8.31 0 .564-.17.564-.743v-.367c0-.516-.275-.708-.572-.708-.346 0-.573.245-.573.791"/></svg></a>');</script>
+		</div>
 	</div>
 </div>
 
-<script src="/js/canvas-diff/quirk-art.js"></script>
-<script type="text/javascript">
-	var artCanvas = document.getElementById( 'artCanvas' );
-  var artContext = artCanvas.getContext( '2d' );
+<div class="home-content">
+	{% assign sorted_posts = site.posts | sort: 'importance' %}
+	<div class="home-projects">
+		<h2><a href="/projects">Projects</a></h2>
 
-  quirkArt( artCanvas, artContext );
-</script>
+		<ul>
+			{% for post in sorted_posts %}
+			{% if post.categories contains 'project' %}
+			<li>
+				{% include post-card.html url=post.url title=post.title thumbnail=post.thumbnail description=post.description subtitle=post.subtitle directurl=post.directurl %}
+			</li>
+			{% endif %}
+			{% endfor %}
+		</ul>
+	</div>
+
+	<div class="home-articles">
+		<h2><a href="/articles">Articles</a></h2>
+
+		<ul>
+			{% for post in sorted_posts %}
+			{% if post.categories contains 'article' %}
+			<li>
+				{% include post-card.html url=post.url title=post.title thumbnail=post.thumbnail description=post.description subtitle=post.subtitle directurl=post.directurl %}
+			</li>
+			{% endif %}
+			{% endfor %}
+		</ul>
+	</div>
+</div>
