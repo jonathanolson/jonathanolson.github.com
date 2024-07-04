@@ -1,0 +1,54 @@
+.sect {
+  clear: both;
+  padding-top: 15px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+#svg {
+  border: 1px solid black;
+  margin-top: 10px;
+
+  &.ltr {
+    float: left;
+  }
+
+  &.rtl {
+    float: right;
+  }
+}
+
+.text-input {
+  width: 100%;
+  font-size: 20px;
+  margin: 1em 0;
+}
+
+.codepoint {
+  float: left;
+  text-align: center;
+  width: 15px;
+
+  .display {
+    line-height: 20px;
+    font-size: 20px;
+    height: 20px;
+    margin-bottom: 5px;
+    margin-top: 5px;
+  }
+
+  .hex {
+    line-height: 10px;
+    font-size: 10px;
+
+    a {
+      text-decoration: none;
+    }
+  }
+
+  .embedding {
+    margin-top: 3px;
+    line-height: 14px;
+    font-size: 14px;
+  }
+}

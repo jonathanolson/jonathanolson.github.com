@@ -1,0 +1,82 @@
+---
+layout: default
+title: Shaping
+subtitle: Bi-Directional Text Shaping in the Browser
+lead: Bi-Directional Text Shaping in the Browser
+permalink: /projects/shaping.html
+categories: project
+header: shaping
+importance: 35
+thumbnail: /img/shaping.jpg
+description: >-
+  Text shaping (and font parsing) in the browser, with bi-directional shaping support.
+---
+
+<link href="/css/shaping.css" rel="stylesheet">
+<main>
+  <p>
+    Browsers have <strong>not</strong> been great at providing accurate text metrics and shaping to the JS layer.
+    This has improved over the years, with <a href="https://developer.mozilla.org/en-US/docs/Web/API/TextMetrics/actualBoundingBoxLeft">actual bounding boxes</a>,
+    but <a href="https://developer.mozilla.org/en-US/docs/Web/API/Local_Font_Access_API">access to actual glyph paths</a>
+    is still behind a scary prompt to the user.
+  </p>
+
+  <p>
+    In 2015, I explored how practical it was to ship subsetted fonts to the browser, and use
+    <a href="http://www.freetype.org/">FreeType</a>/<a href="http://www.freedesktop.org/wiki/Software/HarfBuzz/">Harfbuzz</a>/<a href="http://fribidi.org/">FriBidi</a> through <a href="https://github.com/kripken/emscripten">Emscripten</a> to render text accurately.
+    The result is the <a href="https://github.com/jonathanolson/shaping">Shaping</a> library, which can be used to render text with accurate metrics and shaping.
+    It also provides bi-directional text support, which is a must for Arabic and Hebrew, and my particular needs at the time
+    (bi-directional embeddings).
+  </p>
+
+  <p>
+    It uses FreeType to extract glyphs and font information, Harfbuzz for the shaping and complex layout, and FriBidi for bi-directional text support.
+  </p>
+
+  <h2>
+    Demo
+  </h2>
+  <p>
+    Change the input text below. It will be rendered in SVG (inspect element to grab the SVG path data if desired).
+    For general debugging purposes, the logical and visual order of text is displayed (showing each unicode code point
+    individually).
+  </p>
+  <div class="sect">Input</div>
+  <div>
+    <input class="text-input" id="firstText" type="text" autocomplete="off" value="He said &ldquo;&#x202b;قالت '&#x202a;they said: &#x202b;אתה אמר&#x202c;&#x202c;' حول النص ثنائي الاتجاه&#x202c;&rdquo;"></input>
+    <label for="ltrBox">
+      <input autocomplete="off" type="radio" name="directionChoice" id="ltrBox" checked>LTR</input>
+    </label>
+    <label for="rtlBox">
+      <input autocomplete="off" type="radio" name="directionChoice" id="rtlBox">RTL</input>
+    </label>
+  </div>
+  <div class="sect">SVG Output</div>
+  <svg id="svg" width="200" height="5" class="ltr">
+      <path id="path" d="M10 10 H 90 V 90 H 10 Z" fill="black" stroke="transparent"/>
+  </svg>
+  <div class="sect">Logical Order</div>
+  <div id="logical">
+  </div>
+  <div class="sect">Visual Order and Embedding Levels</div>
+  <div id="visual">
+  </div>
+  <div class="sect">Font</div>
+  <p>
+    <a href="http://www.google.com/get/noto/#/family/noto-serif">Noto Serif</a>,
+    <a href="http://www.google.com/get/noto/#/family/noto-naskh-arab">Noto Naskh Arabic</a>, and
+    <a href="http://www.google.com/get/noto/#/family/noto-sans-hebr">Noto Sans Hebrew</a> are currently
+    embedded. To replace or install fonts for certain scripts, upload a file:
+  </p>
+  Default: <input type="file" id="default-font-file"><br>
+  Arabic: <input type="file" id="arabic-font-file"><br>
+  Hebrew: <input type="file" id="hebrew-font-file"><br>
+
+  <script type="text/javascript" src="/js/phet-lib-2024-02-19.min.js"></script>
+  <script type="text/javascript" src="/js/shaping/punycode.min.js"></script>
+  <script type="text/javascript" src="/js/shaping/shaping.min.js"></script>
+  <script type="text/javascript" src="/fonts/notoNaskhArabicRegularBase64.js"></script>
+  <script type="text/javascript" src="/fonts/notoSerifRegularBase64.js"></script>
+  <script type="text/javascript" src="/fonts/notoSansHebrewRegularBase64.js"></script>
+  <script type="text/javascript" src="/js/shaping/bidi-test.js"></script>
+</main>
