@@ -215,6 +215,16 @@ figure {
   .small-figure-image {
     max-width: 20rem;
   }
+
+  .medium-figure-image {
+    max-width: calc( $main-width - 2rem );
+  }
+
+  .medium-figure-iframe {
+    max-width: $main-width;
+    width: 100%;
+    height: 300px;
+  }
 }
 
 [hidden] {
