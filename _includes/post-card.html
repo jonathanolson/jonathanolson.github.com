@@ -1,4 +1,4 @@
-<a class="post-card" href="{% if include.directurl %}{{include.directurl}}{%else%}{{ include.url | replace: "playceholder", "play" | replace: "/index.html", "/" | replace: ".html", "" }}{%endif%}">
+<a class="post-card" href="{% if include.directurl %}{{include.directurl}}{%else%}{{ include.url | replace: "playceholder", "play" | replace: ".html", "" | replace: "/index", "/" }}{%endif%}">
   <div class="post-card-image-container">
     {% if include.thumbnail %}
     <img class="post-card-image" src="{{ include.thumbnail }}" alt="{{ include.title }}">
