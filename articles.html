@@ -10,7 +10,7 @@ header: articles
   {% for post in site.posts %}
   {% if post.categories contains 'article' %}
   <li>
-    {% include post-card.html url=post.url title=post.title thumbnail=post.thumbnail description=post.description subtitle=post.subtitle directurl=post.directurl %}
+    {% include post-card.html url=post.url title=post.title image=post.image description=post.description subtitle=post.subtitle directurl=post.directurl %}
   </li>
   {% endif %}
   {% endfor %}
