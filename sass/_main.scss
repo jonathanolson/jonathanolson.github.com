@@ -303,30 +303,48 @@ $sidebar-min-width: 20rem;
   display: none;
 
   @media (min-width: $main-width + $sidebar-min-width) {
-    display: flex;
+    display: block;
     position: absolute;
     top: 0;
     bottom: 0;
 
     &.sidebar-left {
       left: 0;
-      justify-content: right;
+      //justify-content: right;
 
       & > * {
         border-right: 1px solid #eee;
       }
+
+      .sticky-content {
+        > * {
+          align-self: flex-end; // Align each child element to the right
+        }
+      }
     }
     &.sidebar-right {
       right: 0;
-      justify-content: left;
+      //justify-content: left;
 
       & > * {
         border-left: 1px solid #eee;
       }
+
+      .sticky-content {
+        > * {
+          align-self: flex-start; // Align each child element to the left
+        }
+      }
     }
+
     width: calc((100% - #{$main-width}) / 2 - 1rem);
 
     .sticky-content {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+
       position: sticky;
       top: 2rem;
 
