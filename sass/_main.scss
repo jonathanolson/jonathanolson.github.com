@@ -366,8 +366,18 @@ $sidebar-min-width: 20rem;
           font-size: 0.8rem;
 
           a {
+            display: block;
             color: #555;
             text-decoration: none;
+          }
+
+          &.active {
+            transition: all 0.1s linear;
+            background-color: #e0e0e0;
+
+            a {
+              color: #000;
+            }
           }
         }
       }

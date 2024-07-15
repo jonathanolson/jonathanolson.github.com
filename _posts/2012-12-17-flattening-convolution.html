@@ -46,140 +46,150 @@ description: >-
 		Where $I_\mathrm{disk}$ is $1$ inside of the unit disk centered at the origin, and $0$ everywhere else, and $*$
 		is the convolution operator.
 	</p>
-	<h2 id="using-the-convolution-theorem">Using the Convolution Theorem</h2>
-	<p class="text-warning">
-		NOTE: Work in progress - will convert away from the $e^{-\imath2\pi\omega t}$ style Fourier transform
-	</p>
-	<p>
-		According to this <a href="http://isi.ssl.berkeley.edu/~tatebe/whitepapers/FT%20of%20Uniform%20Disk.pdf">
-		white paper</a>, the <a href="http://en.wikipedia.org/wiki/Fourier_transform">Fourier transform</a>
-		($\mathcal{F}$) of a
-		unit disk is radially symmetric and equal to
-		$$\mathcal{F}\{ I_\mathrm{disk} \}=F(\omega)=\frac{\sqrt{3}}{4|\omega|}J_1(2\pi |\omega|)$$
-		where $J_1$ is a <a href="http://en.wikipedia.org/wiki/Bessel_function">Bessel function</a> of the first kind.
-		Following from the <a href="http://en.wikipedia.org/wiki/Convolution_theorem">Convolution theorem</a> we
-		obtain the point-wise multiplication of $f$ and the disk in the Fourier domain:
-		$$f * I_\mathrm{disk}=\mathcal{F}^{-1}\left\{ \mathcal{F}\{ f \} \cdot \mathcal{F}\{ I_\mathrm{disk} \} \right\}$$
-		Since the only way for $f * I_\mathrm{disk}$ to be the constant $0$ function is for its Fourier transform
-		to be the same, $\mathcal{F}\{f\}$ can only have non-zero values where $\mathcal{F}\{ I_\mathrm{disk} \}=0$.
-		From above, this means that $\mathcal{F}\{f\}$ takes on non-zero values specifically where
-		$$|\omega|=\frac{j_{1,n}}{2\pi}$$
-		where $j_{1,n}$ are the zeros of $J_1$. Since we are assuming $f$ is real, we constrain
-		$\mathcal{F}\{f\}(\omega)=\mathcal{F}\{f\}(-\omega)$ and thus:
-	</p>
-	<p class="well">
-		$f$ satisfies the condition $f * I_\mathrm{disk}=0$ iff $f$ is a weighted sum of functions of the form
-		$$f_{n,\hat{u},\phi}(\vec{v})=\cos(j_{1,n}(\vec{v} \cdot \hat{u})+\phi)$$
-		where $n$ selects the Bessel function zero, $\hat{u}$ is a unit vector indicating
-		the direction of the oscillation, and $\phi$ is an arbitrary phase offset.
-	</p>
-	<figure>
-		<div id="convolution-canvas-container" style="margin: 0 auto; text-align: center; position: relative; width: 530px;">
-			<canvas id="convolution-canvas" width="256" height="256"></canvas>
-			<canvas id="display-canvas" width="256" height="256"></canvas>
-			<div style="position: absolute; top: 0; right: 15px;">$f_p(\theta)$</div>
-			<div style="position: absolute; top: 128px; right: 15px;">$f_p(\theta)\cos(\varphi + \theta)$</div>
-			<div style="position: absolute; top: 128px; right: 246px;">$\varphi$</div>
-		</div>
-		<figcaption>
-			A density plot for an example function $f$ is shown on the left, with a unit disk (outline in red).
-			<strong>Drag on	the density plot to move the unit circle</strong>. To the right, a plot of $f_p(\theta)$
-			around the current center of the unit circle, and a weighted version with $\varphi$ based on the
-			differential area formula below.
-		</figcaption>
-	</figure>
-	<script src="/lib/jquery-3.7.1.min.js"></script>
-	<script src="../js/flattening-convolution.js"></script>
 
-	<h2 id="constraints-from-differential-area">Constraints from differential area</h2>
-	<p>
-		Another interesting approach I've found is based on the fact that for any unit disks $A$ and $B$,
-		their respective differences are equal. With the notation that for any area $C$, the integral of $f$ over
-		$C$ is $A_f(C)=\iint_C f(x)\,\mathrm{d}A$, we get $A_f(A)=A_f(A\cap B)+A_f(A-B)=0$ and
-		$A_f(B)=A_f(B\cap A)+A_f(B-A)=0$ we arrive at
-		$$A_f(A-B)=A_f(B-A)$$
-		Intuitively, we can make $A$ and $B$ arbitrarily close so that we can identify constraints on the
-		perimeter of any unit disk.
-	</p>
-	<p style="text-align: center;">
-		<img src="/img/unit-disk-hypotenuse.svg" type="image/svg+xml" class="figure-center"/>
-	</p>
-	<p>
-		Given a unit disk $A$ with center $(0,0)$ and a unit disk $B$ with center $(d,0)$, we look at how their differences $B-A$, $A-B$ and their integrals behave as we change $d\to 0$. Parameterizing based on the angle $\theta$ from the center of $A$, we want to be able to measure $h(\theta)$ and obtain:
+	<section id="using-the-convolution-theorem">
+		<h2>Using the Convolution Theorem</h2>
+		<p class="text-warning">
+			NOTE: Work in progress - will convert away from the $e^{-\imath2\pi\omega t}$ style Fourier transform
+		</p>
+		<p>
+			According to this <a href="http://isi.ssl.berkeley.edu/~tatebe/whitepapers/FT%20of%20Uniform%20Disk.pdf">
+			white paper</a>, the <a href="http://en.wikipedia.org/wiki/Fourier_transform">Fourier transform</a>
+			($\mathcal{F}$) of a
+			unit disk is radially symmetric and equal to
+			$$\mathcal{F}\{ I_\mathrm{disk} \}=F(\omega)=\frac{\sqrt{3}}{4|\omega|}J_1(2\pi |\omega|)$$
+			where $J_1$ is a <a href="http://en.wikipedia.org/wiki/Bessel_function">Bessel function</a> of the first kind.
+			Following from the <a href="http://en.wikipedia.org/wiki/Convolution_theorem">Convolution theorem</a> we
+			obtain the point-wise multiplication of $f$ and the disk in the Fourier domain:
+			$$f * I_\mathrm{disk}=\mathcal{F}^{-1}\left\{ \mathcal{F}\{ f \} \cdot \mathcal{F}\{ I_\mathrm{disk} \} \right\}$$
+			Since the only way for $f * I_\mathrm{disk}$ to be the constant $0$ function is for its Fourier transform
+			to be the same, $\mathcal{F}\{f\}$ can only have non-zero values where $\mathcal{F}\{ I_\mathrm{disk} \}=0$.
+			From above, this means that $\mathcal{F}\{f\}$ takes on non-zero values specifically where
+			$$|\omega|=\frac{j_{1,n}}{2\pi}$$
+			where $j_{1,n}$ are the zeros of $J_1$. Since we are assuming $f$ is real, we constrain
+			$\mathcal{F}\{f\}(\omega)=\mathcal{F}\{f\}(-\omega)$ and thus:
+		</p>
+		<p class="well">
+			$f$ satisfies the condition $f * I_\mathrm{disk}=0$ iff $f$ is a weighted sum of functions of the form
+			$$f_{n,\hat{u},\phi}(\vec{v})=\cos(j_{1,n}(\vec{v} \cdot \hat{u})+\phi)$$
+			where $n$ selects the Bessel function zero, $\hat{u}$ is a unit vector indicating
+			the direction of the oscillation, and $\phi$ is an arbitrary phase offset.
+		</p>
+		<figure>
+			<div id="convolution-canvas-container" style="margin: 0 auto; text-align: center; position: relative; width: 530px;">
+				<canvas id="convolution-canvas" width="256" height="256"></canvas>
+				<canvas id="display-canvas" width="256" height="256"></canvas>
+				<div style="position: absolute; top: 0; right: 15px;">$f_p(\theta)$</div>
+				<div style="position: absolute; top: 128px; right: 15px;">$f_p(\theta)\cos(\varphi + \theta)$</div>
+				<div style="position: absolute; top: 128px; right: 246px;">$\varphi$</div>
+			</div>
+			<figcaption>
+				A density plot for an example function $f$ is shown on the left, with a unit disk (outline in red).
+				<strong>Drag on	the density plot to move the unit circle</strong>. To the right, a plot of $f_p(\theta)$
+				around the current center of the unit circle, and a weighted version with $\varphi$ based on the
+				differential area formula below.
+			</figcaption>
+		</figure>
+		<script src="/lib/jquery-3.7.1.min.js"></script>
+		<script src="../js/flattening-convolution.js"></script>
+	</section>
 
-		$$A_f(B-A)=\int_{-\theta_0}^{\theta_0}\int_{1}^{h(\theta)}f(r,\theta)r\,\mathrm{d}r\,\mathrm{d}\theta$$
-		$$A_f(A-B)=\int_{-\theta_0+\pi}^{\theta_0+\pi}\int_{1}^{h(\theta)}f(r,\theta),\mathrm{d}r\,\mathrm{d}\theta$$
-		Where $\theta_0=\cos^{-1}\left(\frac{d}{2}\right)$ is the angle from the center of $A$ to where the
-		boundaries of $A$ and $B$ intersect. It is important to note that $h(\theta)$ is the same for both the
-		$A-B$ and $B-A$ cases. For $h(\theta)$, we use the law of cosines to obtain:
+	<section id="constraints-from-differential-area">
+		<h2>Constraints from differential area</h2>
+		<p>
+			Another interesting approach I've found is based on the fact that for any unit disks $A$ and $B$,
+			their respective differences are equal. With the notation that for any area $C$, the integral of $f$ over
+			$C$ is $A_f(C)=\iint_C f(x)\,\mathrm{d}A$, we get $A_f(A)=A_f(A\cap B)+A_f(A-B)=0$ and
+			$A_f(B)=A_f(B\cap A)+A_f(B-A)=0$ we arrive at
+			$$A_f(A-B)=A_f(B-A)$$
+			Intuitively, we can make $A$ and $B$ arbitrarily close so that we can identify constraints on the
+			perimeter of any unit disk.
+		</p>
+		<p style="text-align: center;">
+			<img src="/img/unit-disk-hypotenuse.svg" type="image/svg+xml" class="figure-center"/>
+		</p>
+		<p>
+			Given a unit disk $A$ with center $(0,0)$ and a unit disk $B$ with center $(d,0)$, we look at how their differences $B-A$, $A-B$ and their integrals behave as we change $d\to 0$. Parameterizing based on the angle $\theta$ from the center of $A$, we want to be able to measure $h(\theta)$ and obtain:
 
-		$$1=h^2+d^2-2hd\cos\theta$$
+			$$A_f(B-A)=\int_{-\theta_0}^{\theta_0}\int_{1}^{h(\theta)}f(r,\theta)r\,\mathrm{d}r\,\mathrm{d}\theta$$
+			$$A_f(A-B)=\int_{-\theta_0+\pi}^{\theta_0+\pi}\int_{1}^{h(\theta)}f(r,\theta),\mathrm{d}r\,\mathrm{d}\theta$$
+			Where $\theta_0=\cos^{-1}\left(\frac{d}{2}\right)$ is the angle from the center of $A$ to where the
+			boundaries of $A$ and $B$ intersect. It is important to note that $h(\theta)$ is the same for both the
+			$A-B$ and $B-A$ cases. For $h(\theta)$, we use the law of cosines to obtain:
 
-		This can be grouped into the polynomial $h^2-2hd\cos\theta+d^2-1=0$ and solved with the quadratic equation:
+			$$1=h^2+d^2-2hd\cos\theta$$
 
-		$$h=\frac{2d\cos\theta\pm\sqrt{4d^2\cos^2\theta-4(d^2-1)}}{2}$$
+			This can be grouped into the polynomial $h^2-2hd\cos\theta+d^2-1=0$ and solved with the quadratic equation:
 
-		and simplifying:
-		\begin{align*}
-		h&amp;=d\cos\theta\pm\sqrt{d^2\cos^2\theta-d^2+1}\\
-		h&amp;=d\cos\theta\pm\sqrt{d^2(\cos^2\theta-1)+1}\\
-		h&amp;=d\cos\theta\pm\sqrt{1-d^2\sin^2\theta}
-		\end{align*}
-		Since we are interested in the far case, we are left with
+			$$h=\frac{2d\cos\theta\pm\sqrt{4d^2\cos^2\theta-4(d^2-1)}}{2}$$
 
-		$$h(\theta)=d\cos\theta + \sqrt{1-d^2\sin^2\theta}$$
+			and simplifying:
+			\begin{align*}
+			h&amp;=d\cos\theta\pm\sqrt{d^2\cos^2\theta-d^2+1}\\
+			h&amp;=d\cos\theta\pm\sqrt{d^2(\cos^2\theta-1)+1}\\
+			h&amp;=d\cos\theta\pm\sqrt{1-d^2\sin^2\theta}
+			\end{align*}
+			Since we are interested in the far case, we are left with
 
-		<a href="http://www.wolframalpha.com">Wolfram Alpha</a> shows that
-		$\frac{\partial}{\partial d}h(\theta)=\cos\theta-d(\cdots)$	and thus at $d=0\ (A=B)$ we have
+			$$h(\theta)=d\cos\theta + \sqrt{1-d^2\sin^2\theta}$$
 
-		$$h(\theta)=1, \qquad \frac{\partial}{\partial d}h(\theta)=\cos\theta$$
+			<a href="http://www.wolframalpha.com">Wolfram Alpha</a> shows that
+			$\frac{\partial}{\partial d}h(\theta)=\cos\theta-d(\cdots)$	and thus at $d=0\ (A=B)$ we have
 
-		From the area integrals above, $A_f(B-A)-A_f(A-B)=0$ and we arrive at
+			$$h(\theta)=1, \qquad \frac{\partial}{\partial d}h(\theta)=\cos\theta$$
 
-		$$\int_{-\theta_0}^{\theta_0}\int_{1}^{h(\theta)}f(r,\theta)r\,\mathrm{d}r\,\mathrm{d}\theta - \int_{-\theta_0+\pi}^{\theta_0+\pi}\int_{1}^{h(\theta)}f(r,\theta),\mathrm{d}r\,\mathrm{d}\theta = 0$$
+			From the area integrals above, $A_f(B-A)-A_f(A-B)=0$ and we arrive at
 
-		Since $\lim_{d\to 0}\theta_0=\pi/2$, and assuming $f$ is piecewise continuous, we get (VERIFY THIS):
+			$$\int_{-\theta_0}^{\theta_0}\int_{1}^{h(\theta)}f(r,\theta)r\,\mathrm{d}r\,\mathrm{d}\theta - \int_{-\theta_0+\pi}^{\theta_0+\pi}\int_{1}^{h(\theta)}f(r,\theta),\mathrm{d}r\,\mathrm{d}\theta = 0$$
 
-		$$\frac{\partial}{\partial d}\left(A_f(B-A)-A_f(A-B)\right)=\\ \int\limits_{-\pi/2}^{\pi/2}f(1,\theta)\cos\theta\,\mathrm{d}\theta - \int\limits_{\pi/2}^{3\pi/2}f(1,\theta)\cos\theta\,\mathrm{d}\theta=0$$
+			Since $\lim_{d\to 0}\theta_0=\pi/2$, and assuming $f$ is piecewise continuous, we get (VERIFY THIS):
 
-		Since $\cos$ is an even function, we get
+			$$\frac{\partial}{\partial d}\left(A_f(B-A)-A_f(A-B)\right)=\\ \int\limits_{-\pi/2}^{\pi/2}f(1,\theta)\cos\theta\,\mathrm{d}\theta - \int\limits_{\pi/2}^{3\pi/2}f(1,\theta)\cos\theta\,\mathrm{d}\theta=0$$
 
-		$$\int_{0}^{2\pi}f(1,\theta)\cos\theta\,\mathrm{d}\theta = 0$$
+			Since $\cos$ is an even function, we get
 
-		This can be extended for any angle $\varphi$ and any disk center (not just at the origin), leading to
-	</p>
-	<p class="well">
-		$$\forall \varphi\in\mathbb{R},\quad \forall p\in\mathbb{R}^2,\quad \int_0^{2\pi}f_p(\theta)\cos(\varphi + \theta)\,\mathrm{d}\theta=0$$
+			$$\int_{0}^{2\pi}f(1,\theta)\cos\theta\,\mathrm{d}\theta = 0$$
 
-		Where $f_p(\theta)$ denotes $f(p_x+\cos\theta,p_y+\sin\theta)$, the unit circle with center $p$
-		parameterized by $\theta$, for all piecewise continuous functions $f$.
-	</p>
-	<h2 id="coming-soon">Coming soon</h2>
-	<p>Or maybe these are exercises left to the reader?</p>
-	<ul>
-		<li>
-			Show that $\forall\varphi,\ \forall n\ge 2\in\mathbb{N},\quad \sum_{k=0}^{n}\cos(\frac{2\pi}{n}k+\varphi)=0$,
-			and thus sums of functions of the form $f_p(\theta)=g(n\theta\mod{2\pi})$ i.e. $g$ repeated $n$ times
-			around the circle where $g$ is piecewise continuous, satisfy the differential perimeter formula. Consider
-			whether this is a necessary condition, now that we have methods for constructing $f$. If $n$ is prime,
-			are these functions orthogonal? Could we decompose a function into these uniquely?
-		</li>
-		<li>HTML5 canvas with density map of example $f$ functions</li>
-		<li>Add LaTeX formula references for clarity</li>
-		<li>
-			Note 1D case is just any function periodic over a unit interval, $n$-dimensional unit hypercube case requires a function periodic in the same way.
-		</li>
-		<li>
-			Investigate sampling from distriutions of disk positions. Essentially, the integral should also hold
-			not just for a uniform unit disk but for an (in)finite sum of unit disks.
-		</li>
-		<li>Instead of unit disks, write down (simple?) extensions</li>
-		<li>Add drag hand to canvas</li>
-	</ul>
+			This can be extended for any angle $\varphi$ and any disk center (not just at the origin), leading to
+		</p>
+		<p class="well">
+			$$\forall \varphi\in\mathbb{R},\quad \forall p\in\mathbb{R}^2,\quad \int_0^{2\pi}f_p(\theta)\cos(\varphi + \theta)\,\mathrm{d}\theta=0$$
 
-	<h2 id="feedback">Feedback</h2>
-	<p>
-		Please let me know below if you have any ideas, questions, or corrections about this problem. I'd love to hear new
-		approaches or useful concepts that I haven't mentioned (as I may be unaware of them).
-	</p>
+			Where $f_p(\theta)$ denotes $f(p_x+\cos\theta,p_y+\sin\theta)$, the unit circle with center $p$
+			parameterized by $\theta$, for all piecewise continuous functions $f$.
+		</p>
+	</section>
+
+	<section id="coming-soon">
+		<h2>Coming soon</h2>
+		<p>Or maybe these are exercises left to the reader?</p>
+		<ul>
+			<li>
+				Show that $\forall\varphi,\ \forall n\ge 2\in\mathbb{N},\quad \sum_{k=0}^{n}\cos(\frac{2\pi}{n}k+\varphi)=0$,
+				and thus sums of functions of the form $f_p(\theta)=g(n\theta\mod{2\pi})$ i.e. $g$ repeated $n$ times
+				around the circle where $g$ is piecewise continuous, satisfy the differential perimeter formula. Consider
+				whether this is a necessary condition, now that we have methods for constructing $f$. If $n$ is prime,
+				are these functions orthogonal? Could we decompose a function into these uniquely?
+			</li>
+			<li>HTML5 canvas with density map of example $f$ functions</li>
+			<li>Add LaTeX formula references for clarity</li>
+			<li>
+				Note 1D case is just any function periodic over a unit interval, $n$-dimensional unit hypercube case requires a function periodic in the same way.
+			</li>
+			<li>
+				Investigate sampling from distriutions of disk positions. Essentially, the integral should also hold
+				not just for a uniform unit disk but for an (in)finite sum of unit disks.
+			</li>
+			<li>Instead of unit disks, write down (simple?) extensions</li>
+			<li>Add drag hand to canvas</li>
+		</ul>
+	</section>
+
+	<section id="feedback">
+		<h2>Feedback</h2>
+		<p>
+			Please let me know below if you have any ideas, questions, or corrections about this problem. I'd love to hear new
+			approaches or useful concepts that I haven't mentioned (as I may be unaware of them).
+		</p>
+	</section>
 </main>

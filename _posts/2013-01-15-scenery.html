@@ -60,225 +60,245 @@ description: >-
     projects for its fast and robust development of interactive graphics.
   </p>
 
-  <h2 id="key-strengths">Key Strengths</h2>
+  <section id="key-strengths">
 
-  <ul>
-    <li>
-      Accessibility, internationalization, and color themes made easy
-    </li>
-    <li>
-      Declarative, agnostic to renderer
-    </li>
-    <li>
-      Can seamlessly split the scene graph into layers with mixed renderers (Canvas in front, SVG in back, embedding DOM content, etc.)
-    </li>
-    <li>
-      More powerful input handling than the DOM (e.g. expanded touch areas, more control over multi-touch)
-    </li>
-    <li>
-      Advanced declarative layout system
-    </li>
-    <li>
-      Comes with batteries included: Has a <a href="https://github.com/phetsims/sun">UI component library</a>
-    </li>
-    <li>
-      Battle-tested by <a href="https://phet.colorado.edu">PhET</a>, with many workarounds for browser quirks/bugs
-    </li>
-    <li>
-      Integrated 3D support with <a href="https://threejs.org/">three.js</a>
-    </li>
-  </ul>
+    <h2>Key Strengths</h2>
 
-  <h2 id="key-weaknesses">Key Weaknesses</h2>
+    <ul>
+      <li>
+        Accessibility, internationalization, and color themes made easy
+      </li>
+      <li>
+        Declarative, agnostic to renderer
+      </li>
+      <li>
+        Can seamlessly split the scene graph into layers with mixed renderers (Canvas in front, SVG in back, embedding DOM content, etc.)
+      </li>
+      <li>
+        More powerful input handling than the DOM (e.g. expanded touch areas, more control over multi-touch)
+      </li>
+      <li>
+        Advanced declarative layout system
+      </li>
+      <li>
+        Comes with batteries included: Has a <a href="https://github.com/phetsims/sun">UI component library</a>
+      </li>
+      <li>
+        Battle-tested by <a href="https://phet.colorado.edu">PhET</a>, with many workarounds for browser quirks/bugs
+      </li>
+      <li>
+        Integrated 3D support with <a href="https://threejs.org/">three.js</a>
+      </li>
+    </ul>
+  </section>
 
-  <p>
-    Scenery has followed the constraints of <a href="https://phet.colorado.edu">PhET</a> projects, so it has some limitations
-    that may affect its use in other projects:
-  </p>
+  <section id="key-weaknesses">
 
-  <ul>
-    <li>
-      Standalone JS library is well supported, but JS-only and is 1.1MB minified.
-    </li>
-    <li>
-      Third-party use is not mature. NPM module (<a href="https://www.npmjs.com/package/phet-lib">phet-lib</a>) exists,
-      but is only tested with Vite.
-    </li>
-    <li>
-      Newer versions need <a href="https://phet.colorado.edu/en/help-center/running-sims">fairly up-to-date browser requirements</a>
-      (updated Chrome/Firefox, iOS 15+ / macOS 10.15+ Safari, etc.)
-    </li>
-    <li>
-      Only partial WebGL support (images/sprites/rectangles, including support for custom shaders). WebGPU support is planned.
-    </li>
-    <li>
-      Somewhat memory-heavy, especially for large scenes.
-    </li>
-    <li>
-      Best development experience is in TypeScript, many "input" type checks have been removed from debug builds.
-    </li>
-  </ul>
+    <h2>Key Weaknesses</h2>
 
-  <h2 id="accessibility">Accessibility</h2>
+    <p>
+      Scenery has followed the constraints of <a href="https://phet.colorado.edu">PhET</a> projects, so it has some limitations
+      that may affect its use in other projects:
+    </p>
 
-  <p>
-    Most ways of creating interactive graphics (e.g. Canvas, SVG, WebGL) are not inherently accessible, and many times
-    user-hostile.
-  </p>
+    <ul>
+      <li>
+        Standalone JS library is well supported, but JS-only and is 1.1MB minified.
+      </li>
+      <li>
+        Third-party use is not mature. NPM module (<a href="https://www.npmjs.com/package/phet-lib">phet-lib</a>) exists,
+        but is only tested with Vite.
+      </li>
+      <li>
+        Newer versions need <a href="https://phet.colorado.edu/en/help-center/running-sims">fairly up-to-date browser requirements</a>
+        (updated Chrome/Firefox, iOS 15+ / macOS 10.15+ Safari, etc.)
+      </li>
+      <li>
+        Only partial WebGL support (images/sprites/rectangles, including support for custom shaders). WebGPU support is planned.
+      </li>
+      <li>
+        Somewhat memory-heavy, especially for large scenes.
+      </li>
+      <li>
+        Best development experience is in TypeScript, many "input" type checks have been removed from debug builds.
+      </li>
+    </ul>
+  </section>
 
-  <p>
-    Scenery handles accessibility as a first-class citizen, with built-in support for screen readers, keyboard navigation,
-    interactive highlights, sonification, and voicing.
-  </p>
+  <section id="accessibility">
 
-  <p>
-    Scenery creates a <a href="https://dl.acm.org/doi/abs/10.1145/3192714.3192817">Parallel DOM</a> structure that
-    is invisible, but mirrors the visual content:
-  </p>
+    <h2>Accessibility</h2>
 
-  <figure>
-    <img src="/img/scenery-parallel-dom.png" alt="Parallel DOM created by Scenery" class="small-figure-image">
-  </figure>
+    <p>
+      Most ways of creating interactive graphics (e.g. Canvas, SVG, WebGL) are not inherently accessible, and many times
+      user-hostile.
+    </p>
 
-  <p>
-    This allows screen readers to access the content as if it was built with DOM elements, and allows for normal keyboard
-    navigation.
-  </p>
+    <p>
+      Scenery handles accessibility as a first-class citizen, with built-in support for screen readers, keyboard navigation,
+      interactive highlights, sonification, and voicing.
+    </p>
 
-  <p>
-    Scenery has built-in support to add descriptions and accessible names to everything in the scene graph, and tools
-    to view and develop this content, with the ability to view the parallel DOM:
-  </p>
+    <p>
+      Scenery creates a <a href="https://dl.acm.org/doi/abs/10.1145/3192714.3192817">Parallel DOM</a> structure that
+      is invisible, but mirrors the visual content:
+    </p>
 
-  <figure>
-    <a href="https://bayes.colorado.edu/dev/html/balloons-and-static-electricity/1.5.16/phet/balloons-and-static-electricity_a11y_view.html">
-      <img src="/img/scenery-a11y-view.png" alt="Accessible View of a PhET simulation (simulation on the left, parallel DOM on the right)" class="small-figure-image">
-    </a>
-    <figcaption>
-      Click to explore the accessible view of a PhET simulation
-    </figcaption>
-  </figure>
+    <figure>
+      <img src="/img/scenery-parallel-dom.png" alt="Parallel DOM created by Scenery" class="small-figure-image">
+    </figure>
 
-  <p>
-    Included above are the displayed views of aria-live (read-aloud) contextual and object responses, so that users
-    can get feedback on their actions, and understand the state of the application.
-  </p>
+    <p>
+      This allows screen readers to access the content as if it was built with DOM elements, and allows for normal keyboard
+      navigation.
+    </p>
 
-  <p>
-    It also supports customizable highlighting and controls for interactive elements:
-  </p>
+    <p>
+      Scenery has built-in support to add descriptions and accessible names to everything in the scene graph, and tools
+      to view and develop this content, with the ability to view the parallel DOM:
+    </p>
 
-  <figure>
-    <img src="/img/scenery-interactive-highlights.png" alt="Interactive highlight around a balloon, showing additional controls, in a PhET simulation" class="small-figure-image">
-  </figure>
+    <figure>
+      <a href="https://bayes.colorado.edu/dev/html/balloons-and-static-electricity/1.5.16/phet/balloons-and-static-electricity_a11y_view.html">
+        <img src="/img/scenery-a11y-view.png" alt="Accessible View of a PhET simulation (simulation on the left, parallel DOM on the right)" class="small-figure-image">
+      </a>
+      <figcaption>
+        Click to explore the accessible view of a PhET simulation
+      </figcaption>
+    </figure>
 
-  <h2 id="input">Input</h2>
+    <p>
+      Included above are the displayed views of aria-live (read-aloud) contextual and object responses, so that users
+      can get feedback on their actions, and understand the state of the application.
+    </p>
 
-  <p>
-    Scenery has a powerful input system that is similar to the typical DOM event dispatch, but provides many extensions
-    and customizations for interactive graphics.
-  </p>
+    <p>
+      It also supports customizable highlighting and controls for interactive elements:
+    </p>
 
-  <p>
-    It supports customizing the region of an element that is interactive, and is particularly useful for expanding the
-    area that will respond to user touches on mobile/touchscreens:
-  </p>
+    <figure>
+      <img src="/img/scenery-interactive-highlights.png" alt="Interactive highlight around a balloon, showing additional controls, in a PhET simulation" class="small-figure-image">
+    </figure>
+  </section>
 
-  <figure>
-    <img src="/img/scenery-touch-areas.png" alt="Highlighted expanded touch areas on a PhET simulation control panel" class="medium-figure-image">
-    <figcaption>
-      Touch areas in dashed red, mouuse areas in dashed blue
-    </figcaption>
-  </figure>
+  <section id="input">
+    <h2>Input</h2>
 
-  <p>
-    It has the flexibility to implement multi-touch pan/zoom that can interrupt other presses, swipe-to-drag (for when
-    the user might miss the initial object on a drag), "select/drag the closest item" (allows manual starting of presses
-    or drags), and seamless dragging of items out of "toolboxes".
-  </p>
+    <p>
+      Scenery has a powerful input system that is similar to the typical DOM event dispatch, but provides many extensions
+      and customizations for interactive graphics.
+    </p>
 
-  <h2 id="rendering">Rendering</h2>
+    <p>
+      It supports customizing the region of an element that is interactive, and is particularly useful for expanding the
+      area that will respond to user touches on mobile/touchscreens:
+    </p>
 
-  <p>
-    Each displayable object in Scenery has a list of renderers (Canvas, SVG, WebGL, etc.) that can be used to render it.
-    Scenery can be told which renderer to use, either for everything or for an entire branch of the scene graph.
-  </p>
+    <figure>
+      <img src="/img/scenery-touch-areas.png" alt="Highlighted expanded touch areas on a PhET simulation control panel" class="medium-figure-image">
+      <figcaption>
+        Touch areas in dashed red, mouuse areas in dashed blue
+      </figcaption>
+    </figure>
 
-  <figure>
-    <iframe src="http://localhost/geometric-optics-basics/geometric-optics-basics_en.html?brand=phet&ea&debugger&initialScreen=1&rootRenderer=canvas"></iframe>
-    <figcaption>
-      Example displayed with Canvas only
-    </figcaption>
-  </figure>
+    <p>
+      It has the flexibility to implement multi-touch pan/zoom that can interrupt other presses, swipe-to-drag (for when
+      the user might miss the initial object on a drag), "select/drag the closest item" (allows manual starting of presses
+      or drags), and seamless dragging of items out of "toolboxes".
+    </p>
+  </section>
 
-  <figure>
-    <iframe src="http://localhost/geometric-optics-basics/geometric-optics-basics_en.html?brand=phet&ea&debugger&initialScreen=1&rootRenderer=svg"></iframe>
-    <figcaption>
-      Example displayed with SVG only
-    </figcaption>
-  </figure>
+  <section id="rendering">
 
-  <p>
-    Scenery will look at what renderers are used for objects, and will combine front-to-back adjacent objects with the
-    same renderer into a single layer (e.g. a single SVG or Canvas element). This allows mixing/layering things like
-    a <a href="https://threejs.org/">three.js</a> 3D view with SVG content in the front AND back seamlessly and effortlessly.
-  </p>
+    <h2>Rendering</h2>
 
-  <p>
-    It has a number of advanced optimizations to do this in a high-performance way, with a minimal amount of movement
-    of objects between layers:
-  </p>
+    <p>
+      Each displayable object in Scenery has a list of renderers (Canvas, SVG, WebGL, etc.) that can be used to render it.
+      Scenery can be told which renderer to use, either for everything or for an entire branch of the scene graph.
+    </p>
 
-  <figure>
-    <img src="/img/scenery-stitch.svg" alt="Example logic for changing layers with added/removed Canvas/SVG content" class="medium-figure-image">
-    <figcaption>
-      Example logic for changing layers with added/removed Canvas/SVG content
-    </figcaption>
-  </figure>
+    <figure>
+      <iframe src="http://localhost/geometric-optics-basics/geometric-optics-basics_en.html?brand=phet&ea&debugger&initialScreen=1&rootRenderer=canvas"></iframe>
+      <figcaption>
+        Example displayed with Canvas only
+      </figcaption>
+    </figure>
 
-  <h2 id="components">Components</h2>
+    <figure>
+      <iframe src="http://localhost/geometric-optics-basics/geometric-optics-basics_en.html?brand=phet&ea&debugger&initialScreen=1&rootRenderer=svg"></iframe>
+      <figcaption>
+        Example displayed with SVG only
+      </figcaption>
+    </figure>
 
-  <p>
-    The <a href="https://github.com/phetsims/sun">Sun</a> library contains a large number of UI components built on top of Scenery,
-    used in <a href="https://phet.colorado.edu/">PhET simulations</a>.
-  </p>
+    <p>
+      Scenery will look at what renderers are used for objects, and will combine front-to-back adjacent objects with the
+      same renderer into a single layer (e.g. a single SVG or Canvas element). This allows mixing/layering things like
+      a <a href="https://threejs.org/">three.js</a> 3D view with SVG content in the front AND back seamlessly and effortlessly.
+    </p>
 
-  <p>
-    Some examples of Sun components (used in the <a href="https://jonathanolson.net/slitherlink/play">Slitherlink</a> app):
-  </p>
+    <p>
+      It has a number of advanced optimizations to do this in a high-performance way, with a minimal amount of movement
+      of objects between layers:
+    </p>
 
-  <figure>
-    <img src="/img/sun-example-1.png" alt="Example logic for changing layers with added/removed Canvas/SVG content" class="small-figure-image">
-  </figure>
-  <figure>
-    <img src="/img/sun-example-2.png" alt="Example logic for changing layers with added/removed Canvas/SVG content" class="small-figure-image">
-  </figure>
+    <figure>
+      <img src="/img/scenery-stitch.svg" alt="Example logic for changing layers with added/removed Canvas/SVG content" class="medium-figure-image">
+      <figcaption>
+        Example logic for changing layers with added/removed Canvas/SVG content
+      </figcaption>
+    </figure>
+  </section>
 
-  <p>
-    The components can have their styling and behavior customized, and are set up to work seamlessly with Scenery layout.
-  </p>
+  <section id="components">
+    <h2>Components</h2>
 
-  <h2 id="layout">Layout</h2>
+    <p>
+      The <a href="https://github.com/phetsims/sun">Sun</a> library contains a large number of UI components built on top of Scenery,
+      used in <a href="https://phet.colorado.edu/">PhET simulations</a>.
+    </p>
 
-  <p>
-    Scenery has a powerful layout system that can be used to declaratively lay out objects in a scene.
-  </p>
+    <p>
+      Some examples of Sun components (used in the <a href="https://jonathanolson.net/slitherlink/play">Slitherlink</a> app):
+    </p>
 
-  <p>
-    The <a href="https://phetsims.github.io/scenery/doc/layout">Layout Documentation</a> covers the basics, but it includes
-    layout similar to CSS flexbox / grid, and more! Layout containers can be nested, and the preferred size of a
-    component can be adjusted, allowing fluid layouts.
-  </p>
+    <figure>
+      <img src="/img/sun-example-1.png" alt="Example logic for changing layers with added/removed Canvas/SVG content" class="small-figure-image">
+    </figure>
+    <figure>
+      <img src="/img/sun-example-2.png" alt="Example logic for changing layers with added/removed Canvas/SVG content" class="small-figure-image">
+    </figure>
 
-  <h2 id="try-it-out">Try it out!</h2>
+    <p>
+      The components can have their styling and behavior customized, and are set up to work seamlessly with Scenery layout.
+    </p>
+  </section>
 
-  <p>
-    See the <a href="https://scenerystack.github.io/community/guides/scenery/">instructions for getting started with Scenery and phet-lib</a>
-    (phet-lib is a library that includes Scenery, the Sun components, and other associated code).
-  </p>
+  <section id="layout">
+    <h2>Layout</h2>
 
-  <p>
-    I would recommend checking out the <a href="https://github.com/phetsims/phet-vite-demo">demo using phet-lib with Vite</a>,
-    which allows for a quick start with a modern build system, and has the benefit of using TypeScript.
-  </p>
+    <p>
+      Scenery has a powerful layout system that can be used to declaratively lay out objects in a scene.
+    </p>
+
+    <p>
+      The <a href="https://phetsims.github.io/scenery/doc/layout">Layout Documentation</a> covers the basics, but it includes
+      layout similar to CSS flexbox / grid, and more! Layout containers can be nested, and the preferred size of a
+      component can be adjusted, allowing fluid layouts.
+    </p>
+  </section>
+
+  <section id="try-it-out">
+    <h2>Try it out!</h2>
+
+    <p>
+      See the <a href="https://scenerystack.github.io/community/guides/scenery/">instructions for getting started with Scenery and phet-lib</a>
+      (phet-lib is a library that includes Scenery, the Sun components, and other associated code).
+    </p>
+
+    <p>
+      I would recommend checking out the <a href="https://github.com/phetsims/phet-vite-demo">demo using phet-lib with Vite</a>,
+      which allows for a quick start with a modern build system, and has the benefit of using TypeScript.
+    </p>
+  </section>
 </main>
