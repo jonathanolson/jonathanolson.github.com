@@ -33,7 +33,32 @@
 }
 
 .example-div {
-  margin: 0 auto
+  margin: 0 auto;
+
+  // fallback
+  width: 7em;
+  height: 7em;
+  background-color: #aaa;
+
+  // Add a "loading" text
+  &::before {
+    content: "Loading...";
+    display: block;
+    text-align: center;
+    line-height: 7em;
+    color: #fff;
+  }
+
+  // Remove this once we have the class .loaded
+  &.loaded::before {
+    display: none;
+  }
+
+  &.loaded {
+    width: auto;
+    height: auto;
+    background-color: inherit;
+  }
 }
 
 .caption {
