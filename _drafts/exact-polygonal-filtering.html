@@ -19,7 +19,7 @@ description: >-
 		<nav>
       <div>Contents</div>
       <ul>
-        <li><a href="#demo">Demo</a></li>
+        <li><a href="#introduction">Introduction</a></li>
         <li><a href="#filters">Filters</a></li>
         <li><a href="#greens-theorem-and-polygons">Green's Theorem and Polygons</a></li>
         <li><a href="#putting-it-together">Putting it Together</a></li>
@@ -28,8 +28,15 @@ description: >-
   </div>
 </aside>
 <main>
-  <section id="demo">
-    <h2>Demo</h2>
+  <section id="introduction">
+    <p>
+      Efficient and accurate filtering of polygonal shapes can be achieved with closed-form solutions based on Green's
+      theorem.
+    </p>
+
+    <p id="no-webgpu-0" style="display: none; color: red; font-size: 70%; opacity: 70%;">
+      WebGPU not detected, falling back to a single-frame CPU render below.
+    </p>
 
     <figure class="wrap-figure">
       <canvas id="siemens-canvas" alt="Displays a Siemens Star pattern using Canvas in your browser" style="width: 128px; height: 192px;"></canvas>
@@ -58,6 +65,17 @@ description: >-
         Bilinear Filter
       </figcaption>
     </figure>
+
+    <p>
+      Filtering is a key component of anti-aliasing, which is used to reduce the visual artifacts that occur when rendering
+      high-frequency content at a lower resolution.
+    </p>
+
+    <p>
+      Browsers' built-in anti-aliasing for SVG and Canvas shapes, particularly when animated, usually does not include
+      a significant amount of filtering. When displaying certain shapes, this results in aliasing artifacts that can be
+      distracting or even misleading.
+    </p>
 
   </section>
   <section id="filters">
