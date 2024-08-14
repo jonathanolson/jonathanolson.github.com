@@ -1,0 +1,75 @@
+---
+layout: default
+title: Exact Polygonal Filtering
+subtitle: Using Green's Theorem and Clipping for Precise Anti-Aliasing
+lead: Using Green's Theorem and Clipping for Precise Anti-Aliasing
+permalink: /exact-polygonal-filtering
+categories: article
+header: exact-polygonal-filtering
+importance: 50
+# image: /img/exact-polygonal-filtering-logo-v1.svg
+description: >-
+  Precise filtered (blurred) views of polygons can be efficiently computed in closed form, enabling high-quality
+  anti-aliasing for polygonal rendering and vector graphics.
+---
+
+<!--<link href="/css/exact-polygonal-filtering.css" rel="stylesheet">-->
+<aside class="sidebar sidebar-left">
+  <div class="sticky-content">
+		<nav>
+      <div>Contents</div>
+      <ul>
+        <li><a href="#demo">Demo</a></li>
+        <li><a href="#filters">Filters</a></li>
+        <li><a href="#greens-theorem-and-polygons">Green's Theorem and Polygons</a></li>
+        <li><a href="#putting-it-together">Putting it Together</a></li>
+      </ul>
+		</nav>
+  </div>
+</aside>
+<main>
+  <section id="demo">
+    <h2>Demo</h2>
+
+    <figure class="wrap-figure">
+      <canvas id="siemens-canvas" alt="Displays a Siemens Star pattern using Canvas in your browser" style="width: 128px; height: 192px;"></canvas>
+      <figcaption>
+        Canvas
+      </figcaption>
+    </figure>
+
+    <figure class="wrap-figure">
+      <svg id="siemens-svg" role="img" alt="Displays a Siemens Star pattern using SVG in your browser" style="width: 128px; height: 192px; vertical-align: baseline;"></svg>
+      <figcaption>
+        SVG
+      </figcaption>
+    </figure>
+
+    <figure class="wrap-figure">
+      <canvas id="siemens-box" alt="Displays a Siemens Star pattern using a box filter" style="width: 128px; height: 192px;"></canvas>
+      <figcaption>
+        Box Filter
+      </figcaption>
+    </figure>
+
+    <figure class="wrap-figure">
+      <canvas id="siemens-bilinear" alt="Displays a Siemens Star pattern using a bilinear filter" style="width: 128px; height: 192px;"></canvas>
+      <figcaption>
+        Bilinear Filter
+      </figcaption>
+    </figure>
+
+  </section>
+  <section id="filters">
+    <h2>Filters</h2>
+  </section>
+  <section id="greens-theorem-and-polygons">
+    <h2>Green's Theorem and Polygons</h2>
+  </section>
+  <section id="putting-it-together">
+    <h2>Putting it Together</h2>
+  </section>
+</main>
+
+<script src="../lib/phet-lib-2024-08-13.min.js"></script>
+<script src="../js/exact-polygonal-filtering.js"></script>
