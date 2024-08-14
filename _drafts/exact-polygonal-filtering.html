@@ -9,8 +9,8 @@ header: exact-polygonal-filtering
 importance: 50
 # image: /img/exact-polygonal-filtering-logo-v1.svg
 description: >-
-  Precise filtered (blurred) views of polygons can be efficiently computed in closed form, enabling high-quality
-  anti-aliasing for polygonal rendering and vector graphics.
+  Efficient and accurate filtering of polygonal shapes can be achieved with closed-form solutions based on Green's
+  theorem (using piecewise-polynomial filters).
 ---
 
 <!--<link href="/css/exact-polygonal-filtering.css" rel="stylesheet">-->
@@ -31,7 +31,7 @@ description: >-
   <section id="introduction">
     <p>
       Efficient and accurate filtering of polygonal shapes can be achieved with closed-form solutions based on Green's
-      theorem.
+      theorem (using piecewise-polynomial filters).
     </p>
 
     <p id="no-webgpu-0" style="display: none; color: red; font-size: 70%; opacity: 70%;">
@@ -80,6 +80,65 @@ description: >-
   </section>
   <section id="filters">
     <h2>Filters</h2>
+
+    <p>
+      Rasterization is the process of converting vector graphics into pixel data. When rendering a polygon, the rasterizer
+      needs to determine how much the polygon <em>covers</em> each pixel, so that it can determine the polygon's contribution
+      to the pixel.
+    </p>
+
+    <p>
+      A fast approach, given many polygons, is to see how much of each polygon is contained within the box of each pixel.
+      However, when polygons overlap, this approach can lead to over-coverage, and can result in incorrect blending
+      known as <a href="https://phetsims.github.io/alpenglow/#overview-conflation">conflation artifacts</a>. To avoid this,
+      it is ideal to compute exact (non-overlapping) coverage, but it can also be approximated by super-sampling.
+    </p>
+
+    <p>
+      While <a href="http://alvyray.com/Memos/CG/Microsoft/6_pixel.pdf">a pixel is not a little square</a>, a simple way
+      to get a coverage value is to use the area of the polygon that covers the pixel. This is equivalent to applying a
+      <em>box filter</em> to the polygon, which is the simplest form of filtering.
+    </p>
+
+    <figure>
+      <img src="/img/box-filter.png" alt="Box filter" class="medium-figure-image">
+      <figcaption>
+        Box filter
+      </figcaption>
+    </figure>
+
+    <p>
+      While the box filter results in a sharp result, it can result in
+      <a href="https://en.wikipedia.org/wiki/Spatial_anti-aliasing#Examples">spatial aliasing artifacts</a>.
+      These can be reduced by using other filters. Instead of taking the area of the polygon that covers a square around
+      the center of the pixel, others will evaluate a different weighted function over the polygon.
+    </p>
+
+    <p>
+      The bilinear and Mitchell-Netravali (bicubic) filters are two common filters that are used in practice, and both
+      are piecewise-polynomial filters.
+    </p>
+
+    <figure>
+      <img src="/img/bilinear-filter.png" alt="Bilinear filter" class="medium-figure-image">
+      <figcaption>
+        Bilinear filter
+      </figcaption>
+    </figure>
+
+    <figure>
+      <img src="/img/mitchell-netravali-filter.png" alt="Mitchell-Netravali (bicubic) filter" class="medium-figure-image">
+      <figcaption>
+        Mitchell-Netravali (bicubic) filter
+      </figcaption>
+    </figure>
+
+    <p>
+      These piecewise-polynomial filters are equivalent to taking the integral of the piecewise-polynomial function
+      <em>within</em> the polygon, where the filter function is centered at where a sample is being taken. The box
+      filter is equivalent to taking the integral of an indicator function that is 1 within the square, and 0 outside.
+    </p>
+
   </section>
   <section id="greens-theorem-and-polygons">
     <h2>Green's Theorem and Polygons</h2>
