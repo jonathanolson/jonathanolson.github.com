@@ -160,7 +160,7 @@
 
           p2.setXY( clip.x / clip.w, -clip.y / clip.w );
           matrix.multiplyVector2( p2 );
-          p2.addXY( 0, 256 );
+          p2.addXY( 0, rasterHeight / 384 * 256 );
         };
 
         let y = checkerY + Math.cos( diff / 3 );
