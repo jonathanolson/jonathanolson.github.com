@@ -37,6 +37,14 @@ ol, ul {
   margin: 0;
   padding: 0;
   margin-left: 2rem;
+
+  &.text-list {
+    margin-bottom: 1rem;
+  }
+}
+
+.text-list li {
+  margin-bottom: 0.5rem;
 }
 
 //ol, ul {
