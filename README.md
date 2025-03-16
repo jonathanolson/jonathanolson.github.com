@@ -1,2 +1,4 @@
-Experimenting with GitHub pages, Bootstrap, Sublime Text 2, etc.
+jonathanolson.net
 ========================
+
+Source for my main website
